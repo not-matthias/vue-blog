@@ -18,7 +18,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { Config, ICategory } from '../config';
+import config, { ICategory } from '../config';
 
 // @ts-ignore
 @Component
@@ -27,8 +27,8 @@ export default class Header extends Vue {
   private categories: ICategory[] = [];
 
   private created() {
-    this.name = Config.title;
-    this.categories = Config.categories;
+    this.name = config.title;
+    this.categories = config.categories;
   }
 }
 </script>

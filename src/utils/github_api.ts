@@ -1,24 +1,26 @@
-// Logic:
-// 1. Look if the markdown file has been loaded and saved in the local storage
-//    - If not found, load and save it to local storage
-//    - If found, render it
-
 import axios from 'axios';
-import { Config, ICategory } from '../config';
-import Cache from './cache';
+import config from '../config';
+import cache from './cache';
+
+export interface IFile {
+  title: string;
+  date: string;
+  sha: string;
+  size: number;
+}
 
 /**
  * Generates a url for a content list
  * @returns {string} the url
  */
 const getListUrl = (): string =>
-  `https://api.github.com/repos/${Config.username}/${Config.repo}/contents/?ref=${Config.branch}`;
+  `https://api.github.com/repos/${config.username}/${config.repo}/contents/${config.folder}?ref=${config.branch}`;
 
 /**
  * Generates a url for the content of a file
  * @param  {string} hash the file hash
  */
-const getPostUrl = (hash: string) => `https://api.github.com/repos/${Config.username}/${Config.repo}/git/blobs/${hash}`;
+const getPostUrl = (hash: string) => `https://api.github.com/repos/${config.username}/${config.repo}/git/blobs/${hash}`;
 
 /**
  * Retrieves only the filename out of the filename
@@ -44,7 +46,7 @@ const getDate = (filename: string): string => {
  * @param param0 data from the file
  * @returns any
  */
-const formatFile = ({ name, sha, size }: any) => ({ title: getFileName(name), data: getDate(name), sha, size });
+const formatFile = ({ name, sha, size }: any) => ({ title: getFileName(name), date: getDate(name), sha, size });
 
 export default {
   /**
@@ -52,8 +54,8 @@ export default {
    * @returns Promise<any>
    */
   async getList(): Promise<any> {
-    if (Cache.hasItem('list')) {
-      return Promise.resolve(Cache.getItem('list'));
+    if (cache.hasItem('list')) {
+      return Promise.resolve(cache.getItem('list'));
     } else {
       // Get list
       const response = await axios.get(getListUrl());
@@ -62,7 +64,7 @@ export default {
       const list = response.data.map(formatFile);
 
       // Save into cache
-      Cache.setItem('list', list);
+      cache.setItem('list', list);
 
       // Return it
       return list;
@@ -75,19 +77,19 @@ export default {
    * @returns Promise<any>
    */
   async getContent(hash: string): Promise<any> {
-    const config = {
+    const axiosConfig = {
       headers: { Accept: 'application/vnd.github.v3.raw' }
     };
     const cacheKey = `post.${hash}`;
 
-    if (Cache.hasItem(cacheKey)) {
-      return Promise.resolve(Cache.getItem(cacheKey));
+    if (cache.hasItem(cacheKey)) {
+      return Promise.resolve(cache.getItem(cacheKey));
     } else {
       // Get list
-      const response = await axios.get(getPostUrl(hash), config);
+      const response = await axios.get(getPostUrl(hash), axiosConfig);
 
       // Save into cache
-      Cache.setItem(cacheKey, response.data);
+      cache.setItem(cacheKey, response.data);
 
       // Return it
       return response.data;

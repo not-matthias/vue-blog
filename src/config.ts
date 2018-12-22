@@ -3,7 +3,7 @@ export interface ICategory {
   description: string;
 }
 
-export const Config = {
+export default {
   title: 'Blog',
   categories: [
     {
@@ -17,5 +17,6 @@ export const Config = {
   ],
   username: 'not-matthias',
   repo: 'vue-blog-posts',
-  branch: 'master'
+  branch: 'master',
+  folder: 'blog-posts'
 };
