@@ -12,6 +12,7 @@
     "object-literal-sort-keys": false,
     "no-consecutive-blank-lines": false,
     "trailing-comma": false,
-    "arrow-parens": false
+    "arrow-parens": false,
+    "curly": false
   }
 }
