@@ -14,5 +14,8 @@ export const Config = {
       name: 'Coding',
       description: 'No description.'
     }
-  ]
+  ],
+  username: 'not-matthias',
+  repo: 'vue-blog-posts',
+  branch: 'master'
 };
