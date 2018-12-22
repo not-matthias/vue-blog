@@ -1,0 +1,37 @@
+<template>
+  <div>
+    <v-toolbar dense>
+      <v-toolbar-title>{{name}}</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <!-- Buttons -->
+      <v-toolbar-items>
+        <v-btn flat @click="$router.push({ name: 'posts' })">Posts</v-btn>
+
+        <v-btn flat v-for="(category, key) in categories" :key="key">{{ category.name }}</v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from 'vue';
+import Component from 'vue-class-component';
+import { Config, ICategory } from '../config';
+
+// @ts-ignore
+@Component
+export default class Header extends Vue {
+  private name: string = 'My Blog';
+  private categories: ICategory[] = [];
+
+  private created() {
+    this.name = Config.title;
+    this.categories = Config.categories;
+  }
+}
+</script>
+
+<style>
+</style>

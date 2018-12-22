@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+  - '10'
+
+install:
+  - npm install
+
+script:
+  - npm run build
+
+cache:
+  directories:
+    - 'node_modules'
+
+notifications:
+  email: false
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  local_dir: dist
+  github-token: $GH_TOKEN
+  repo: not-matthias/not-matthias.github.io
+  keep-history: true
+  target-branch: master
+  committer-from-gh: true
+  on:
+    branch: development
