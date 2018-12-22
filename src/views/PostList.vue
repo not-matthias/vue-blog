@@ -10,7 +10,7 @@
             <!-- Card Title -->
             <v-card-title primary-title>
               <div>
-                <h1 class="headline font-weight-bold">APK Cracking for Beginners</h1>
+                <h1 class="headline font-weight-bold">Nostrum voluptatibus nobis id ex repudiandae.</h1>
 
                 <!-- Information -->
                 <p class="pt-3">
