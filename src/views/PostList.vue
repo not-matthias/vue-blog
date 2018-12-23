@@ -5,25 +5,42 @@
     <v-container grid-list-xl>
       <v-layout row wrap>
         <v-flex
-          v-for="(post, key) in posts"
+          v-for="(file, key) in files"
           :key="key"
           @mouseover="isHovering=true"
           @mouseleave="isHovering=false"
         >
           <!-- Card -->
-          <v-card class="pa-3" raised :to="`/post/${post.hash}`">
+          <v-card class="pa-3" raised :to="`/post/${file.hash}`">
             <!-- Card Title -->
             <v-card-title primary-title>
               <div>
-                <h1 class="font-weight-bold" :class="{ onHover: isHovering }">{{post.title}}</h1>
+                <h1
+                  class="font-weight-bold"
+                  :class="{ onHover: isHovering }"
+                >{{file.metaData.title}}</h1>
 
-                <!-- Information -->
-                <p class="pt-3">
-                  <v-icon small>calendar_today</v-icon>
-                  &nbsp;{{post.date}}
+                <p class="pt-2">
+                  <!-- Date -->
+                  <span>
+                    <v-icon small>calendar_today</v-icon>
+                    &nbsp;{{file.metaData.date}}&nbsp;
+                  </span>
+
+                  <!-- Author -->
+                  <span>
+                    <v-icon small>edit</v-icon>
+                    &nbsp;{{file.metaData.author}}
+                  </span>
                 </p>
               </div>
             </v-card-title>
+
+            <!-- Card Text -->
+            <v-card-text class="pt-0">
+              <v-divider class="pa-3"></v-divider>
+              <p>{{file.metaData.description}}</p>
+            </v-card-text>
           </v-card>
         </v-flex>
       </v-layout>
@@ -48,7 +65,7 @@ import github_api, { IFile } from '../utils/github_api';
   }
 })
 export default class Posts extends Vue {
-  private posts: IFile[] = [];
+  private files: IFile[] = [];
   private isHovering: boolean = false;
 
   /**
@@ -62,7 +79,7 @@ export default class Posts extends Vue {
    * Loads the post list.
    */
   private async loadList() {
-    this.posts = await github_api.getList();
+    this.files = await github_api.getList();
   }
 }
 </script>

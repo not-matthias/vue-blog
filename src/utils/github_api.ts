@@ -27,11 +27,7 @@ interface IFileResponse {
 
 export interface IFile {
   hash: string;
-  title: string;
-  date: string;
-  tags: string[];
-  author: string;
-  description: string;
+  metaData: IMetaData;
 }
 
 interface IPost {
@@ -69,11 +65,7 @@ export default {
 
     return {
       hash: file.sha,
-      title: metaData.title,
-      date: metaData.date,
-      tags: metaData.tags,
-      author: metaData.author,
-      description: metaData.description
+      metaData
     };
   },
 
