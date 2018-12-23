@@ -12,7 +12,7 @@ export interface IMetaData {
   author: string;
 }
 
-interface IFileResponse {
+interface IListResponse {
   name: string;
   path: string;
   sha: string;
@@ -60,7 +60,7 @@ export default {
    * @param file
    * @returns Promise<IFile>
    */
-  async parseListResponse(file: IFileResponse): Promise<IFile> {
+  async parseListResponse(file: IListResponse): Promise<IFile> {
     const metaData = await this.getMetaData(file.sha);
 
     return {
@@ -78,7 +78,7 @@ export default {
       return Promise.resolve(JSON.parse(cache.getItem('list')));
     } else {
       // Get list
-      const response = await axios.get<IFileResponse[]>(getListUrl());
+      const response = await axios.get<IListResponse[]>(getListUrl());
 
       // Create custom list
       const promise: Array<Promise<IFile>> = response.data.map(file => this.parseListResponse(file));
@@ -107,7 +107,7 @@ export default {
       return Promise.resolve(cache.getItem(cacheKey));
     } else {
       // Get list
-      const response = await axios.get(getPostUrl(hash), { headers });
+      const response = await axios.get<string>(getPostUrl(hash), { headers });
 
       // Save into cache
       cache.setItem(cacheKey, response.data);
