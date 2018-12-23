@@ -1,6 +1,8 @@
 import axios from 'axios';
 import config from '../config';
 import cache from './cache';
+import fm from 'front-matter';
+import moment from 'moment';
 
 export interface IFile {
   title: string;
@@ -23,11 +25,11 @@ const getListUrl = (): string =>
 const getPostUrl = (hash: string) => `https://api.github.com/repos/${config.username}/${config.repo}/git/blobs/${hash}`;
 
 /**
- * Retrieves only the filename out of the filename
+ * Retrieves only the title out of the filename
  * @param filename the full filename
  * @returns string
  */
-const getFileName = (filename: string): string => {
+const getTitle = (filename: string): string => {
   return filename.replace(/\.md$/, '').replace(/^\d{4}-\d{1,2}-\d{1,2}-/, '');
 };
 
@@ -46,7 +48,7 @@ const getDate = (filename: string): string => {
  * @param param0 data from the file
  * @returns any
  */
-const formatFile = ({ name, sha, size }: any) => ({ title: getFileName(name), date: getDate(name), sha, size });
+const formatFile = ({ name, sha, size }: any) => ({ title: getTitle(name), date: getDate(name), hash: sha, size });
 
 export default {
   /**
@@ -91,6 +93,40 @@ export default {
 
       // Return it
       return response.data;
+    }
+  },
+
+  /**
+   * Gets the meta data.
+   * @param  {string} hash
+   * @returns Promise<any>
+   */
+  async getMetaData(hash: string): Promise<any> {
+    const cacheKey = `meta.${hash}`;
+
+    if (cache.hasItem(cacheKey)) {
+      return Promise.resolve(JSON.parse(cache.getItem(cacheKey)));
+    } else {
+      // Get list
+      const response = await this.getContent(hash);
+
+      // Parse front-matter (to get meta-data)
+      const content: any = fm(response);
+
+      // Create meta data object
+      const data = {
+        title: content.attributes.title,
+        date: moment(content.attributes.date).format('dddd, DD. MMMM YYYY'),
+        tags: content.attributes.tags,
+        description: content.attributes.description,
+        author: content.attributes.author
+      };
+
+      // Save into cache
+      cache.setItem(cacheKey, JSON.stringify(data));
+
+      // Return it
+      return data;
     }
   }
 };
