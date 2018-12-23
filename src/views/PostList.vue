@@ -56,10 +56,16 @@ export default class Posts extends Vue {
   private posts: IFile[] = [];
   private isHovering: boolean = false;
 
+  /**
+   * Loads the list when mounted.
+   */
   private async mounted() {
     await this.loadList();
   }
 
+  /**
+   * Loads the post list.
+   */
   private async loadList() {
     this.posts = await github_api.getList();
   }
