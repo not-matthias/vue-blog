@@ -1,7 +1,9 @@
 <template>
-  <v-footer app>
-    <v-spacer></v-spacer>
-    <div>Copyright {{ new Date().getFullYear() }} not-matthias</div>
-    <v-spacer></v-spacer>
-  </v-footer>
+  <div class="pt-5">
+    <v-footer absolute>
+      <v-spacer></v-spacer>
+      <div>Copyright {{ new Date().getFullYear() }} not-matthias</div>
+      <v-spacer></v-spacer>
+    </v-footer>
+  </div>
 </template>
