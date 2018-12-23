@@ -13,7 +13,7 @@
           @mouseleave="isHovering=false"
         >
           <!-- Card -->
-          <v-card class="pa-3" raised to="/">
+          <v-card class="pa-3" raised :to="`/post/${post.sha}`">
             <!-- Card Title -->
             <v-card-title primary-title>
               <div>
