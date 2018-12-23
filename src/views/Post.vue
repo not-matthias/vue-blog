@@ -3,30 +3,43 @@
     <Header/>
 
     <v-container>
-      <h1>{{ title }}</h1>
+      <v-layout row wrap>
+        <v-flex xs10 offset-xs1>
+          <v-card class="pa-3" raised>
+            <v-card-title primary-title>
+              <div>
+                <h1>{{ title }}</h1>
 
-      <!-- Information -->
-      <p class="pt-2">
-        <!-- Date -->
-        <span>
-          <v-icon small>calendar_today</v-icon>
-          &nbsp;{{date}}
-        </span>
+                <!-- Information -->
+                <p class="pt-2">
+                  <!-- Date -->
+                  <span>
+                    <v-icon small>calendar_today</v-icon>
+                    &nbsp;{{date}}&nbsp;
+                  </span>
 
-        <!-- Divide it -->
-        &nbsp;
-        <!-- Author -->
-        <span>
-          <v-icon small>edit</v-icon>
-          &nbsp;{{author}}
-        </span>
-      </p>
+                  <!-- Author -->
+                  <span>
+                    <v-icon small>edit</v-icon>
+                    &nbsp;{{author}}
+                  </span>
+                </p>
+              </div>
+            </v-card-title>
 
-      <v-divider class="pa-3"/>
-
-      <article v-html="htmlContent()"></article>
+            <!-- Card Text -->
+            <v-card-text class="pt-0">
+              <v-divider class="pa-3"></v-divider>
+              <article v-html="htmlContent()"></article>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
     </v-container>
 
+    <!-- <v-btn icon top left fab>
+      <v-icon>arrow_back_ios</v-icon>
+    </v-btn>-->
     <Footer/>
   </div>
 </template>
