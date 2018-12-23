@@ -21,14 +21,9 @@
                 <p class="pt-3">
                   <v-icon small>calendar_today</v-icon>
                   &nbsp;{{post.date}}
-                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <v-icon small>edit</v-icon>&nbsp;not-matthias
                 </p>
               </div>
             </v-card-title>
-
-            <!-- Card Text -->
-            <v-card-text class="pt-0">Description.</v-card-text>
           </v-card>
         </v-flex>
       </v-layout>

@@ -8,20 +8,20 @@
           <v-card class="pa-3" raised>
             <v-card-title primary-title>
               <div>
-                <h1 class="font-weight-bold">{{title}}</h1>
+                <h1 class="font-weight-bold">{{metaData.title}}</h1>
 
                 <!-- Information -->
                 <p class="pt-2">
                   <!-- Date -->
                   <span>
                     <v-icon small>calendar_today</v-icon>
-                    &nbsp;{{date}}&nbsp;
+                    &nbsp;{{metaData.date}}&nbsp;
                   </span>
 
                   <!-- Author -->
                   <span>
                     <v-icon small>edit</v-icon>
-                    &nbsp;{{author}}
+                    &nbsp;{{metaData.author}}
                   </span>
                 </p>
               </div>
@@ -52,7 +52,7 @@ import config from '../config';
 import marked from '../utils/renderer';
 import fm from 'front-matter';
 import moment from 'moment';
-import github_api, { IFile } from '../utils/github_api';
+import github_api, { IFile, IMetaData } from '../utils/github_api';
 
 // @ts-ignore
 @Component({
@@ -63,11 +63,13 @@ import github_api, { IFile } from '../utils/github_api';
 })
 export default class Post extends Vue {
   private content: string = '';
-  private author: string = '';
-  private title: string = '';
-  private date: string = '';
-  private description: string = '';
-  private tags: string[] = [];
+  private metaData: IMetaData = {
+    title: '',
+    date: '',
+    tags: [],
+    description: '',
+    author: ''
+  };
 
   /**
    * Generates the html content from markdown.
@@ -87,15 +89,8 @@ export default class Post extends Vue {
    * Loads a specific post.
    */
   private async loadPost() {
-    const data = await github_api.getContentWithMetaData(this.$route.params.hash);
-
-    // Set data
-    this.content = data.content;
-    this.title = data.title;
-    this.date = data.date;
-    this.tags = data.tags;
-    this.description = data.description;
-    this.author = data.author;
+    this.content = await github_api.getContent(this.$route.params.hash);
+    this.metaData = await github_api.getMetaData(this.$route.params.hash);
   }
 }
 </script>

@@ -4,11 +4,45 @@ import cache from './cache';
 import fm from 'front-matter';
 import moment from 'moment';
 
-export interface IFile {
+export interface IMetaData {
   title: string;
   date: string;
+  tags: string[];
+  description: string;
+  author: string;
+}
+
+interface IFileResponse {
+  name: string;
+  path: string;
   sha: string;
   size: number;
+  url: string;
+  html_url: string;
+  git_url: string;
+  download_url: string;
+  type: string;
+  _links: ILinks;
+}
+
+export interface IFile {
+  hash: string;
+  title: string;
+  date: string;
+  tags: string[];
+  author: string;
+  description: string;
+}
+
+interface IPost {
+  content: string;
+  metaData: IMetaData;
+}
+
+interface ILinks {
+  self: string;
+  git: string;
+  html: string;
 }
 
 /**
@@ -24,49 +58,44 @@ const getListUrl = (): string =>
  */
 const getPostUrl = (hash: string) => `https://api.github.com/repos/${config.username}/${config.repo}/git/blobs/${hash}`;
 
-/**
- * Retrieves only the title out of the filename
- * @param filename the full filename
- * @returns string
- */
-const getTitle = (filename: string): string => {
-  return filename.replace(/\.md$/, '').replace(/^\d{4}-\d{1,2}-\d{1,2}-/, '');
-};
-
-/**
- * Retrieves the date out of the filename
- * @param filename the full filename
- * @returns string
- */
-const getDate = (filename: string): string => {
-  const pattern = new RegExp(/^\d{4}-\d{1,2}-\d{1,2}/);
-  return pattern.exec(filename) + '';
-};
-
-/**
- * Formats a file, received from the github api
- * @param param0 data from the file
- * @returns any
- */
-const formatFile = ({ name, sha, size }: any) => ({ title: getTitle(name), date: getDate(name), hash: sha, size });
-
 export default {
   /**
-   * Gets the content list.
-   * @returns Promise<any>
+   * Parses the response.
+   * @param file
+   * @returns Promise<IFile>
    */
-  async getList(): Promise<any> {
+  async parseListResponse(file: IFileResponse): Promise<IFile> {
+    const metaData = await this.getMetaData(file.sha);
+
+    return {
+      hash: file.sha,
+      title: metaData.title,
+      date: metaData.date,
+      tags: metaData.tags,
+      author: metaData.author,
+      description: metaData.description
+    };
+  },
+
+  /**
+   * Gets the content list.
+   * @returns Promise<IFile[]>
+   */
+  async getList(): Promise<IFile[]> {
     if (cache.hasItem('list')) {
-      return Promise.resolve(cache.getItem('list'));
+      return Promise.resolve(JSON.parse(cache.getItem('list')));
     } else {
       // Get list
-      const response = await axios.get(getListUrl());
+      const response = await axios.get<IFileResponse[]>(getListUrl());
 
-      // Remove unneeded data
-      const list = response.data.map(formatFile);
+      // Create custom list
+      const promise: Array<Promise<IFile>> = response.data.map(file => this.parseListResponse(file));
+
+      // Resolve all promises
+      const list = await Promise.all(promise);
 
       // Save into cache
-      cache.setItem('list', list);
+      cache.setItem('list', JSON.stringify(list));
 
       // Return it
       return list;
@@ -76,9 +105,9 @@ export default {
   /**
    * Gets the file content.
    * @param hash
-   * @returns Promise<any>
+   * @returns Promise<string>
    */
-  async getRawContent(hash: string): Promise<any> {
+  async getRawContent(hash: string): Promise<string> {
     const cacheKey = `post.${hash}`;
     const headers = { Accept: 'application/vnd.github.v3.raw' };
 
@@ -99,9 +128,9 @@ export default {
   /**
    * Gets the meta data.
    * @param  {string} hash
-   * @returns Promise<any>
+   * @returns Promise<IMetaData>
    */
-  async getMetaData(hash: string): Promise<any> {
+  async getMetaData(hash: string): Promise<IMetaData> {
     const cacheKey = `meta.${hash}`;
 
     if (cache.hasItem(cacheKey)) {
@@ -111,7 +140,7 @@ export default {
       const response = await this.getRawContent(hash);
 
       // Parse front-matter (to get meta-data)
-      const content: any = fm(response);
+      const content = fm<IMetaData>(response);
 
       // Create meta data object
       const data = {
@@ -133,9 +162,9 @@ export default {
   /**
    * Gets the content without meta data.
    * @param hash
-   * @returns Promise<any>
+   * @returns Promise<string>
    */
-  async getContent(hash: string): Promise<any> {
+  async getContent(hash: string): Promise<string> {
     // Get raw content
     const response = await this.getRawContent(hash);
 
@@ -151,10 +180,10 @@ export default {
    * @param hash
    * @returns Promise<any>
    */
-  async getContentWithMetaData(hash: string): Promise<any> {
+  async getContentWithMetaData(hash: string): Promise<IPost> {
     const content = await this.getContent(hash);
     const metaData = await this.getMetaData(hash);
 
-    return { content, ...metaData };
+    return { content, metaData };
   }
 };
