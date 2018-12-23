@@ -78,7 +78,7 @@ export default {
    * @param hash
    * @returns Promise<any>
    */
-  async getContent(hash: string): Promise<any> {
+  async getRawContent(hash: string): Promise<any> {
     const cacheKey = `post.${hash}`;
     const headers = { Accept: 'application/vnd.github.v3.raw' };
 
@@ -108,7 +108,7 @@ export default {
       return Promise.resolve(JSON.parse(cache.getItem(cacheKey)));
     } else {
       // Get list
-      const response = await this.getContent(hash);
+      const response = await this.getRawContent(hash);
 
       // Parse front-matter (to get meta-data)
       const content: any = fm(response);
@@ -128,5 +128,21 @@ export default {
       // Return it
       return data;
     }
+  },
+
+  /**
+   * Gets the content without meta data.
+   * @param hash
+   * @returns Promise<any>
+   */
+  async getContent(hash: string): Promise<any> {
+    // Get raw content
+    const response = await this.getRawContent(hash);
+
+    // Remove metadata
+    const content = response.replace(/^---[\s\S]*---/, '');
+
+    // Return it
+    return content;
   }
 };

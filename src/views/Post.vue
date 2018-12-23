@@ -81,7 +81,7 @@ export default class Post extends Vue {
    * Loads a specific post.
    */
   private async loadPost() {
-    const response = await github_api.getContent(this.$route.params.hash);
+    const response = await github_api.getRawContent(this.$route.params.hash);
 
     // Parse front-matter (to get meta-data)
     const content: any = fm(response);
