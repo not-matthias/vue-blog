@@ -77,16 +77,14 @@ export default {
    * @returns Promise<any>
    */
   async getContent(hash: string): Promise<any> {
-    const axiosConfig = {
-      headers: { Accept: 'application/vnd.github.v3.raw' }
-    };
     const cacheKey = `post.${hash}`;
+    const headers = { Accept: 'application/vnd.github.v3.raw' };
 
     if (cache.hasItem(cacheKey)) {
       return Promise.resolve(cache.getItem(cacheKey));
     } else {
       // Get list
-      const response = await axios.get(getPostUrl(hash), axiosConfig);
+      const response = await axios.get(getPostUrl(hash), { headers });
 
       // Save into cache
       cache.setItem(cacheKey, response.data);

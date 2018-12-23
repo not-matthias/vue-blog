@@ -16,7 +16,7 @@ const routes = [
     component: () => import('./views/PostList.vue')
   },
   {
-    path: '/post/:id',
+    path: '/post/:hash',
     name: 'post',
     component: () => import('./views/Post.vue')
   },

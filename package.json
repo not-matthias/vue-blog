@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "css-loader": "^2.0.2",
+    "front-matter": "^3.0.1",
     "marked": "^0.5.2",
     "material-design-icons-iconfont": "^4.0.3",
     "vue": "^2.5.17",
