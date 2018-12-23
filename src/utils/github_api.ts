@@ -144,5 +144,17 @@ export default {
 
     // Return it
     return content;
+  },
+
+  /**
+   * Gets the content with meta data.
+   * @param hash
+   * @returns Promise<any>
+   */
+  async getContentWithMetaData(hash: string): Promise<any> {
+    const content = await this.getContent(hash);
+    const metaData = await this.getMetaData(hash);
+
+    return { content, ...metaData };
   }
 };

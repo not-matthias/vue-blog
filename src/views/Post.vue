@@ -69,10 +69,16 @@ export default class Post extends Vue {
   private description: string = '';
   private tags: string[] = [];
 
+  /**
+   * Generates the html content from markdown.
+   */
   private htmlContent(): string {
     return marked(this.content);
   }
 
+  /**
+   * Loads the post when created.
+   */
   private created() {
     this.loadPost();
   }
@@ -81,18 +87,15 @@ export default class Post extends Vue {
    * Loads a specific post.
    */
   private async loadPost() {
-    const response = await github_api.getRawContent(this.$route.params.hash);
-
-    // Parse front-matter (to get meta-data)
-    const content: any = fm(response);
+    const data = await github_api.getContentWithMetaData(this.$route.params.hash);
 
     // Set data
-    this.content = content.body;
-    this.title = content.attributes.title;
-    this.date = moment(content.attributes.date).format('dddd, DD. MMMM YYYY');
-    this.tags = content.attributes.tags;
-    this.description = content.attributes.description;
-    this.author = content.attributes.author;
+    this.content = data.content;
+    this.title = data.title;
+    this.date = data.date;
+    this.tags = data.tags;
+    this.description = data.description;
+    this.author = data.author;
   }
 }
 </script>
