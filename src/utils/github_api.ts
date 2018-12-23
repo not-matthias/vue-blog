@@ -160,11 +160,12 @@ export default {
     // Get raw content
     const response = await this.getRawContent(hash);
 
-    // Remove metadata
-    const content = response.replace(/^---[\s\S]*---/, '');
+    // Remove meta data
+    const lines: string[] = response.split('\n');
+    lines.splice(0, 7);
 
     // Return it
-    return content;
+    return lines.join('\n');
   },
 
   /**
