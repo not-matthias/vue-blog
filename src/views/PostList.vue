@@ -73,6 +73,6 @@ h1 {
 }
 
 .onHover {
-  color: #da4453;
+  color: #c62828;
 }
 </style>
