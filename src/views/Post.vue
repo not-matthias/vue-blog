@@ -8,18 +8,18 @@
       <!-- Information -->
       <p class="pt-2">
         <!-- Date -->
-        <v-span>
+        <span>
           <v-icon small>calendar_today</v-icon>
           &nbsp;{{date}}
-        </v-span>
+        </span>
 
         <!-- Divide it -->
         &nbsp;
         <!-- Author -->
-        <v-span>
+        <span>
           <v-icon small>edit</v-icon>
           &nbsp;{{author}}
-        </v-span>
+        </span>
       </p>
 
       <v-divider class="pa-3"/>
@@ -38,6 +38,7 @@ import Footer from '@/components/Footer.vue';
 import config from '../config';
 import marked from '../utils/renderer';
 import fm from 'front-matter';
+import moment from 'moment';
 import github_api, { IFile } from '../utils/github_api';
 
 // @ts-ignore
@@ -75,7 +76,7 @@ export default class Post extends Vue {
     // Set data
     this.content = content.body;
     this.title = content.attributes.title;
-    this.date = content.attributes.date;
+    this.date = moment(content.attributes.date).format('dddd, DD. MMMM YYYY');
     this.tags = content.attributes.tags;
     this.description = content.attributes.description;
     this.author = content.attributes.author;
