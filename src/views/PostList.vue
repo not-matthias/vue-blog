@@ -4,13 +4,23 @@
 
     <v-container grid-list-xl>
       <v-layout row wrap>
-        <v-flex xs10 offset-xs1 v-for="(post, key) in posts" :key="key">
+        <v-flex
+          xs10
+          offset-xs1
+          v-for="(post, key) in posts"
+          :key="key"
+          @mouseover="isHovering=true"
+          @mouseleave="isHovering=false"
+        >
           <!-- Card -->
           <v-card class="pa-3" raised to="/">
             <!-- Card Title -->
             <v-card-title primary-title>
               <div>
-                <h1 class="headline font-weight-bold">{{post.title}}</h1>
+                <h1
+                  class="headline font-weight-bold"
+                  :class="{ onHover: isHovering }"
+                >{{post.title}}</h1>
 
                 <!-- Information -->
                 <p class="pt-3">
@@ -49,6 +59,7 @@ import github_api, { IFile } from '../utils/github_api';
 })
 export default class Posts extends Vue {
   private posts: IFile[] = [];
+  private isHovering: boolean = false;
 
   private async mounted() {
     await this.loadList();
@@ -62,9 +73,11 @@ export default class Posts extends Vue {
 
 
 <style>
-.headline:hover {
-  color: #da4453;
+.headline {
   transition: all 0.3s;
+}
+.onHover {
+  color: #da4453;
   text-decoration: none;
   cursor: pointer;
 }
