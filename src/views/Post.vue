@@ -4,11 +4,11 @@
 
     <v-container>
       <v-layout row wrap>
-        <v-flex xs10 offset-xs1>
+        <v-flex>
           <v-card class="pa-3" raised>
             <v-card-title primary-title>
               <div>
-                <h1>{{ title }}</h1>
+                <h1 class="font-weight-bold">{{title}}</h1>
 
                 <!-- Information -->
                 <p class="pt-2">
