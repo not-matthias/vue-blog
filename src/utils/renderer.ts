@@ -4,8 +4,8 @@ const renderer = new marked.Renderer();
 
 marked.setOptions({
   renderer,
-  breaks: true,
-  gfm: true
+  breaks: false,
+  gfm: false
 });
 
 export default marked;
