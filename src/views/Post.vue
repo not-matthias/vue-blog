@@ -8,20 +8,20 @@
           <v-card class="pa-3" raised>
             <v-card-title primary-title>
               <div>
-                <h1 class="font-weight-bold">{{metaData.title}}</h1>
+                <h1 class="font-weight-bold">{{ metaData.title }}</h1>
 
                 <!-- Information -->
                 <p class="pt-2">
                   <!-- Date -->
                   <span>
                     <v-icon small>calendar_today</v-icon>
-                    &nbsp;{{metaData.date}}&nbsp;
+                    &nbsp;{{ metaData.date }}&nbsp;
                   </span>
 
                   <!-- Author -->
                   <span>
                     <v-icon small>edit</v-icon>
-                    &nbsp;{{metaData.author}}
+                    &nbsp;{{ metaData.author }}
                   </span>
                 </p>
               </div>
@@ -30,7 +30,12 @@
             <!-- Card Text -->
             <v-card-text class="pt-0">
               <v-divider class="pa-3"></v-divider>
-              <article v-html="htmlContent()"></article>
+
+              <h1>Div:</h1>
+              <div v-html="htmlContent()" class="markdown-body"></div>
+
+              <h1>Article:</h1>
+              <vue-markdown v-html="htmlContent()" class="markdown-body"></vue-markdown>
             </v-card-text>
           </v-card>
         </v-flex>
@@ -49,16 +54,20 @@ import { Component, Vue } from 'vue-property-decorator';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import config from '../config';
+// import marked from 'marked';
 import marked from '../utils/renderer';
 import fm from 'front-matter';
 import moment from 'moment';
 import github_api, { IFile, IMetaData } from '../utils/github_api';
+import highlight from 'highlight.js';
+import VueMarkdown from 'vue-markdown';
 
 // @ts-ignore
 @Component({
   components: {
     Footer,
-    Header
+    Header,
+    VueMarkdown
   }
 })
 export default class Post extends Vue {

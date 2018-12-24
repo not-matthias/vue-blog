@@ -5,6 +5,7 @@
     <v-container grid-list-xl>
       <v-layout row wrap>
         <v-flex
+          xs12
           v-for="(file, key) in files"
           :key="key"
           @mouseover="isHovering=true"
@@ -37,7 +38,7 @@
             </v-card-title>
 
             <!-- Card Text -->
-            <v-card-text class="pt-0">
+            <v-card-text class="py-0">
               <v-divider class="pa-3"></v-divider>
               <p>{{file.metaData.description}}</p>
             </v-card-text>
@@ -88,6 +89,10 @@ export default class Posts extends Vue {
 <style>
 h1 {
   transition: all 0.3s;
+}
+
+h1:hover {
+  color: green;
 }
 
 .onHover {
