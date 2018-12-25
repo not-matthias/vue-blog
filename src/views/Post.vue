@@ -98,14 +98,14 @@ export default class Post extends Vue {
 
 <style>
 pre {
-  background-color: #f7f7f7;
+  background-color: #2b2b2b;
   padding: 16px;
   overflow-x: auto;
   white-space: pre;
 }
 
 code {
-  background: #f7f7f7;
+  background: #2b2b2b;
   /* font-family: 'Ubuntu Mono', 'PT Mono', Consolas, Monaco, Menlo, monospace !important; */
   box-shadow: none;
 }
