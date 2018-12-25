@@ -4,10 +4,13 @@ import highlight from 'highlight.js';
 const renderer = new marked.Renderer();
 
 renderer.code = (code: string, language: string, isEscaped: boolean) => {
-  const highlighted = highlight.highlight('css', code);
+  let highlighted;
 
-  // return `<pre v-highlightjs><code class="${escape(language)}">${code}</code></pre>`;
-  return `<pre v-highlightjs><code class="${escape(language)}">${highlighted.value}</code></pre>`;
+  // Use auto formatting if no language defined
+  if (highlight.getLanguage(language)) highlighted = highlight.highlight(language, code);
+  else highlighted = highlight.highlightAuto(code);
+
+  return `<pre><code class="lang-${escape(language)}">${highlighted.value}</code></pre>`;
 };
 
 marked.setOptions({

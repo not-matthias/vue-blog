@@ -31,7 +31,6 @@
             <v-card-text class="pt-0">
               <v-divider class="pa-3"></v-divider>
 
-              <h1>Article 1:</h1>
               <article v-html="htmlContent()"></article>
             </v-card-text>
           </v-card>
@@ -49,12 +48,12 @@ import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 
 import config from '../config';
-// import marked from 'marked';
 import marked from '../utils/renderer';
 import github_api, { IFile, IMetaData } from '../utils/github_api';
 
 import moment from 'moment';
 import fm from 'front-matter';
+import highlight from 'highlight.js';
 
 // @ts-ignore
 @Component({
@@ -98,5 +97,22 @@ export default class Post extends Vue {
 </script>
 
 <style>
-@import '~highlight.js/styles/darcula.css';
+pre {
+  background-color: #f7f7f7;
+  padding: 16px;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+code {
+  background: #f7f7f7;
+  /* font-family: 'Ubuntu Mono', 'PT Mono', Consolas, Monaco, Menlo, monospace !important; */
+  box-shadow: none;
+}
+
+blockquote {
+  margin: 0;
+  padding: 0 16px;
+  border-left: 4px solid #ddd;
+}
 </style>
