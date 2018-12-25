@@ -31,20 +31,14 @@
             <v-card-text class="pt-0">
               <v-divider class="pa-3"></v-divider>
 
-              <h1>Div:</h1>
-              <div v-html="htmlContent()" class="markdown-body"></div>
-
-              <h1>Article:</h1>
-              <vue-markdown v-html="htmlContent()" class="markdown-body"></vue-markdown>
+              <h1>Article 1:</h1>
+              <article v-html="htmlContent()"></article>
             </v-card-text>
           </v-card>
         </v-flex>
       </v-layout>
     </v-container>
 
-    <!-- <v-btn icon top left fab>
-      <v-icon>arrow_back_ios</v-icon>
-    </v-btn>-->
     <Footer/>
   </div>
 </template>
@@ -53,21 +47,20 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
+
 import config from '../config';
 // import marked from 'marked';
 import marked from '../utils/renderer';
-import fm from 'front-matter';
-import moment from 'moment';
 import github_api, { IFile, IMetaData } from '../utils/github_api';
-import highlight from 'highlight.js';
-import VueMarkdown from 'vue-markdown';
+
+import moment from 'moment';
+import fm from 'front-matter';
 
 // @ts-ignore
 @Component({
   components: {
     Footer,
-    Header,
-    VueMarkdown
+    Header
   }
 })
 export default class Post extends Vue {
@@ -103,3 +96,7 @@ export default class Post extends Vue {
   }
 }
 </script>
+
+<style>
+@import '~highlight.js/styles/darcula.css';
+</style>

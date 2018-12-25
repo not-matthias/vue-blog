@@ -7,8 +7,7 @@ renderer.code = (code: string, language: string, isEscaped: boolean) => {
   const highlighted = highlight.highlight('css', code);
 
   // return `<pre v-highlightjs><code class="${escape(language)}">${code}</code></pre>`;
-  // return `<pre v-highlightjs><code class="${escape(language)}">${highlighted.value}</code></pre>`;
-  return `<xmp>${code}</xmp>`;
+  return `<pre v-highlightjs><code class="${escape(language)}">${highlighted.value}</code></pre>`;
 };
 
 marked.setOptions({
