@@ -96,7 +96,7 @@ export default class Post extends Vue {
 }
 </script>
 
-<style>
+<style scoped>
 pre {
   background-color: #2b2b2b;
   padding: 16px;

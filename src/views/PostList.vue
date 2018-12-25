@@ -2,6 +2,9 @@
   <div>
     <Header/>
 
+    <Test></Test>
+    <Test></Test>
+
     <v-container grid-list-xl>
       <v-layout row wrap>
         <v-flex
@@ -87,7 +90,7 @@ export default class Posts extends Vue {
 </script>
 
 
-<style>
+<style scoped>
 h1 {
   transition: all 0.3s;
 }
