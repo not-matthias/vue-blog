@@ -2,50 +2,10 @@
   <div>
     <Header/>
 
-    <Test></Test>
-    <Test></Test>
-
     <v-container grid-list-xl>
       <v-layout row wrap>
-        <v-flex
-          xs12
-          v-for="(file, key) in files"
-          :key="key"
-          @mouseover="isHovering=true"
-          @mouseleave="isHovering=false"
-        >
-          <!-- Card -->
-          <v-card class="pa-3" raised :to="`/post/${file.hash}`">
-            <!-- Card Title -->
-            <v-card-title primary-title>
-              <div>
-                <h1
-                  class="font-weight-bold"
-                  :class="{ onHover: isHovering }"
-                >{{file.metaData.title}}</h1>
-
-                <p class="pt-2">
-                  <!-- Date -->
-                  <span>
-                    <v-icon small>calendar_today</v-icon>
-                    &nbsp;{{file.metaData.date}}&nbsp;
-                  </span>
-
-                  <!-- Author -->
-                  <span>
-                    <v-icon small>edit</v-icon>
-                    &nbsp;{{file.metaData.author}}
-                  </span>
-                </p>
-              </div>
-            </v-card-title>
-
-            <!-- Card Text -->
-            <v-card-text class="py-0">
-              <v-divider class="pa-3"></v-divider>
-              <p>{{file.metaData.description}}</p>
-            </v-card-text>
-          </v-card>
+        <v-flex xs12 v-for="(file, key) in files" :key="key">
+          <ListItem :hash="file.hash" :metaData="file.metaData"/>
         </v-flex>
       </v-layout>
     </v-container>
@@ -58,20 +18,20 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
+import ListItem from '@/components/ListItem.vue';
 
 import config, { ICategory } from '../config';
 import github_api, { IFile } from '../utils/github_api';
 
-// @ts-ignore
 @Component({
   components: {
     Footer,
-    Header
+    Header,
+    ListItem
   }
 })
 export default class Posts extends Vue {
   private files: IFile[] = [];
-  private isHovering: boolean = false;
 
   /**
    * Loads the list when mounted.
@@ -88,18 +48,3 @@ export default class Posts extends Vue {
   }
 }
 </script>
-
-
-<style scoped>
-h1 {
-  transition: all 0.3s;
-}
-
-h1:hover {
-  color: green;
-}
-
-.onHover {
-  color: #c62828;
-}
-</style>
