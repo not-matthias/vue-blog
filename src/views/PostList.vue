@@ -3,12 +3,24 @@
     <Header/>
 
     <v-container grid-list-xl>
-      <v-layout row wrap>
-        <v-flex xs12 v-for="(file, key) in files" :key="key">
-          <ListItem :hash="file.hash" :metaData="file.metaData"/>
+      <v-data-iterator
+        content-tag="v-layout"
+        hide-actions
+        row
+        wrap
+        :items="filteredItems"
+        :rows-per-page-items="perPage"
+        :pagination.sync="pagination"
+      >
+        <v-flex xs12 slot="item" slot-scope="file">
+          <ListItem :hash="file.item.hash" :metaData="file.item.metaData"/>
         </v-flex>
-      </v-layout>
+      </v-data-iterator>
     </v-container>
+
+    <div class="text-xs-center">
+      <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
+    </div>
 
     <Footer/>
   </div>
@@ -32,6 +44,17 @@ import github_api, { IFile } from '../utils/github_api';
 })
 export default class Posts extends Vue {
   private files: IFile[] = [];
+  private filteredItems: IFile[] = [];
+
+  private search: string = '';
+  private perPage: number[] = [5];
+  private pagination = {
+    descending: false,
+    page: 1,
+    rowsPerPage: 5,
+    sortBy: '',
+    totalItems: 0
+  };
 
   /**
    * Loads the list when mounted.
@@ -44,7 +67,18 @@ export default class Posts extends Vue {
    * Loads the post list.
    */
   private async loadList() {
-    this.files = await github_api.getList();
+    this.filteredItems = this.files = await github_api.getList();
+    this.pagination.totalItems = this.filteredItems.length;
+  }
+
+  /**
+   * Returns the number of pages for the pagination.
+   * @returns number
+   */
+  get pages() {
+    if (this.pagination.rowsPerPage == null || this.pagination.totalItems == null) return 0;
+
+    return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage);
   }
 }
 </script>
