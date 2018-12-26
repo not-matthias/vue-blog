@@ -9,6 +9,8 @@
         row
         wrap
         :items="filteredItems"
+        :search="search"
+        :custom-filter="filterItems"
         :rows-per-page-items="perPage"
         :pagination.sync="pagination"
       >
@@ -79,6 +81,13 @@ export default class Posts extends Vue {
     if (this.pagination.rowsPerPage == null || this.pagination.totalItems == null) return 0;
 
     return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage);
+  }
+
+  /**
+   * Custom item filter
+   */
+  private filterItems(items: IFile[], search: string, filter: any) {
+    return items.filter(item => item.metaData.title.includes(search));
   }
 }
 </script>
