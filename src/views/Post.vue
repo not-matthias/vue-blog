@@ -55,7 +55,6 @@ import moment from 'moment';
 import fm from 'front-matter';
 import highlight from 'highlight.js';
 
-// @ts-ignore
 @Component({
   components: {
     Footer,

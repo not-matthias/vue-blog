@@ -20,7 +20,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 import config, { ICategory } from '../config';
 
-// @ts-ignore
 @Component
 export default class Header extends Vue {
   private name: string = 'My Blog';
