@@ -7,7 +7,7 @@
         row
         wrap
         :items="filteredItems"
-        :search="search"
+        :search="this.search"
         :custom-filter="filterItems"
         :rows-per-page-items="perPage"
         :pagination.sync="pagination"
@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 import ListItem from '@/components/ListItem.vue';
 
 import config, { ICategory } from '../config';
@@ -37,10 +37,11 @@ import github_api, { IFile } from '../utils/github_api';
   }
 })
 export default class PostList extends Vue {
+  @Prop({ default: '' }) private search!: string;
+
   private files: IFile[] = [];
   private filteredItems: IFile[] = [];
 
-  private search: string = '';
   private perPage: number[] = [5];
   private pagination = {
     descending: false,
