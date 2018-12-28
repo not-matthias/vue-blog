@@ -12,7 +12,7 @@ const routes = [
   {
     path: '/posts',
     name: 'posts',
-    component: () => import('./views/PostList.vue')
+    component: () => import('./views/Posts.vue')
   },
   {
     path: '/post/:hash',

@@ -1,7 +1,5 @@
 <template>
   <div>
-    <Header/>
-
     <v-container grid-list-xl>
       <v-data-iterator
         content-tag="v-layout"
@@ -23,15 +21,11 @@
     <div class="text-xs-center">
       <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
     </div>
-
-    <Footer/>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import Header from '@/components/Header.vue';
-import Footer from '@/components/Footer.vue';
 import ListItem from '@/components/ListItem.vue';
 
 import config, { ICategory } from '../config';
@@ -39,12 +33,10 @@ import github_api, { IFile } from '../utils/github_api';
 
 @Component({
   components: {
-    Footer,
-    Header,
     ListItem
   }
 })
-export default class Posts extends Vue {
+export default class PostList extends Vue {
   private files: IFile[] = [];
   private filteredItems: IFile[] = [];
 
@@ -91,3 +83,7 @@ export default class Posts extends Vue {
   }
 }
 </script>
+
+
+<style>
+</style>
