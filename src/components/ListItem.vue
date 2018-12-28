@@ -4,7 +4,7 @@
     <v-card
       class="pa-3"
       raised
-      :to="`/post/${this.hash}`"
+      :to="{ name: 'post', params: { hash: this.hash } }"
       @mouseover="isHovering=true"
       @mouseleave="isHovering=false"
     >
