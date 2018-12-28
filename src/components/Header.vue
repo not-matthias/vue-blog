@@ -7,8 +7,8 @@
 
       <!-- Buttons -->
       <v-toolbar-items>
-        <v-btn flat :to="{ name: 'posts' }">Posts</v-btn>
-        <v-btn flat :to="{ name: 'search' }">Search</v-btn>
+        <v-btn flat @click="$router.push({ name: 'posts' })">Posts</v-btn>
+        <v-btn flat @click="$router.push({ name: 'search' })">Search</v-btn>
 
         <!-- <v-btn flat v-for="(category, key) in categories" :key="key">{{ category.name }}</v-btn> -->
       </v-toolbar-items>
