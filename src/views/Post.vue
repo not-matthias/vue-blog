@@ -51,9 +51,9 @@ import config from '../config';
 import marked from '../utils/renderer';
 import github_api, { IFile, IMetaData } from '../utils/github_api';
 
+import highlight from 'highlight.js';
 import moment from 'moment';
 import fm from 'front-matter';
-import highlight from 'highlight.js';
 
 @Component({
   components: {
@@ -72,17 +72,17 @@ export default class Post extends Vue {
   };
 
   /**
-   * Generates the html content from markdown.
-   */
-  private htmlContent(): string {
-    return marked(this.content);
-  }
-
-  /**
    * Loads the post when created.
    */
   private created() {
     this.loadPost();
+  }
+
+  /**
+   * Generates the html content from markdown.
+   */
+  private htmlContent(): string {
+    return marked(this.content);
   }
 
   /**
