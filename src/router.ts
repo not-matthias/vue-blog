@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
 
 Vue.use(Router);
 
@@ -8,7 +7,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Home
+    component: () => import('./views/Home.vue')
   },
   {
     path: '/posts',
@@ -19,6 +18,11 @@ const routes = [
     path: '/post/:hash',
     name: 'post',
     component: () => import('./views/Post.vue')
+  },
+  {
+    path: '/search',
+    name: 'search',
+    component: () => import('./views/Search.vue')
   },
   {
     path: '*',
