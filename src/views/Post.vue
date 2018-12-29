@@ -2,40 +2,35 @@
   <div>
     <Header/>
 
-    <v-container>
-      <v-layout row wrap>
-        <v-flex>
-          <v-card class="pa-3" raised>
-            <v-card-title primary-title>
-              <div>
-                <h1 class="font-weight-bold">{{ metaData.title }}</h1>
+    <div class="text-xs-center pa-5" v-if="loading">
+      <v-progress-circular indeterminate/>
+    </div>
 
-                <!-- Information -->
-                <p class="pt-2">
-                  <!-- Date -->
-                  <span>
-                    <v-icon small>calendar_today</v-icon>
-                    &nbsp;{{ metaData.date }}&nbsp;
-                  </span>
+    <v-container v-else>
+      <v-card class="pa-3" raised>
+        <v-card-title primary-title>
+          <div>
+            <h1 class="font-weight-bold">{{ metaData.title }}</h1>
 
-                  <!-- Author -->
-                  <span>
-                    <v-icon small>edit</v-icon>
-                    &nbsp;{{ metaData.author }}
-                  </span>
-                </p>
-              </div>
-            </v-card-title>
+            <p class="pt-2">
+              <span>
+                <v-icon small>calendar_today</v-icon>
+                &nbsp;{{ metaData.date }}&nbsp;
+              </span>
+              
+              <span>
+                <v-icon small>edit</v-icon>
+                &nbsp;{{ metaData.author }}
+              </span>
+            </p>
+          </div>
+        </v-card-title>
 
-            <!-- Card Text -->
-            <v-card-text class="pt-0">
-              <v-divider class="pa-3"></v-divider>
-
-              <article v-html="htmlContent()"></article>
-            </v-card-text>
-          </v-card>
-        </v-flex>
-      </v-layout>
+        <v-card-text class="pt-0">
+          <v-divider class="pa-3"></v-divider>
+          <article v-html="htmlContent()"></article>
+        </v-card-text>
+      </v-card>
     </v-container>
 
     <Footer/>
@@ -62,6 +57,7 @@ import fm from 'front-matter';
   }
 })
 export default class Post extends Vue {
+  private loading: boolean = true;
   private content: string = '';
   private metaData: IMetaData = {
     title: '',
@@ -76,6 +72,20 @@ export default class Post extends Vue {
    */
   private created() {
     this.loadPost();
+
+    this.loading = false;
+  }
+
+  /**
+   * Loads a specific post.
+   */
+  private async loadPost() {
+    try {
+      this.content = await github_api.getContent(this.$route.params.hash);
+      this.metaData = await github_api.getMetaData(this.$route.params.hash);
+    } catch (error) {
+      // TODO: show the error
+    }
   }
 
   /**
@@ -83,14 +93,6 @@ export default class Post extends Vue {
    */
   private htmlContent(): string {
     return marked(this.content);
-  }
-
-  /**
-   * Loads a specific post.
-   */
-  private async loadPost() {
-    this.content = await github_api.getContent(this.$route.params.hash);
-    this.metaData = await github_api.getMetaData(this.$route.params.hash);
   }
 }
 </script>
