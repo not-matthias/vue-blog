@@ -25,6 +25,11 @@ const routes = [
     component: () => import('./views/Search.vue')
   },
   {
+    path: '/category/:category',
+    name: 'category',
+    component: () => import('./views/Category.vue')
+  },
+  {
     path: '*',
     name: '404',
     component: () => import('./views/PageNotFound.vue')

@@ -8,9 +8,16 @@
       <!-- Buttons -->
       <v-toolbar-items>
         <v-btn flat @click="$router.push({ name: 'posts' })">Posts</v-btn>
-        <v-btn flat @click="$router.push({ name: 'search' })">Search</v-btn>
 
-        <!-- <v-btn flat v-for="(category, key) in categories" :key="key">{{ category.name }}</v-btn> -->
+        <!-- TODO: Replace with dynamic solution -->
+        <v-btn
+          flat
+          v-for="(category, key) in categories"
+          :key="key"
+          @click="$router.push({ name: `category`, params: {category}})"
+        >{{ category }}</v-btn>
+
+        <v-btn flat @click="$router.push({ name: 'search' })">Search</v-btn>
       </v-toolbar-items>
     </v-toolbar>
   </div>
@@ -18,12 +25,12 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import config, { ICategory } from '../config';
+import config from '../config';
 
 @Component
 export default class Header extends Vue {
   private name: string = 'My Blog';
-  private categories: ICategory[] = [];
+  private categories: string[] = [];
 
   /**
    * Sets the variables via the config.

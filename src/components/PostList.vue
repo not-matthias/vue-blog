@@ -34,7 +34,7 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import ListItem from '@/components/ListItem.vue';
 
-import config, { ICategory } from '../config';
+import config from '../config';
 import github_api, { IFile } from '../utils/github_api';
 
 @Component({
