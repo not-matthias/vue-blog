@@ -61,10 +61,11 @@ export default class Post extends Vue {
   private content: string = '';
   private metaData: IMetaData = {
     title: '',
-    date: '',
-    tags: [],
     description: '',
-    author: ''
+    date: '',
+    author: '',
+    category: '',
+    tags: []
   };
 
   /**

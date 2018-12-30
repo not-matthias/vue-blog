@@ -6,10 +6,11 @@ import moment from 'moment';
 
 export interface IMetaData {
   title: string;
-  date: string;
-  tags: string[];
   description: string;
+  date: string;
   author: string;
+  category: string;
+  tags: string[];
 }
 
 interface IListResponse {
@@ -137,10 +138,11 @@ export default {
       // Create meta data object
       const data = {
         title: content.attributes.title,
-        date: moment(content.attributes.date).format('dddd, DD. MMMM YYYY'),
-        tags: content.attributes.tags,
         description: content.attributes.description,
-        author: content.attributes.author
+        date: moment(content.attributes.date).format('dddd, DD. MMMM YYYY'),
+        author: content.attributes.author,
+        category: content.attributes.category,
+        tags: content.attributes.tags
       };
 
       // Save into cache

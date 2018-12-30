@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- Card -->
     <v-card
       class="pa-3"
       raised
@@ -8,26 +7,29 @@
       @mouseover="isHovering=true"
       @mouseleave="isHovering=false"
     >
-      <!-- Card Title -->
       <v-card-title primary-title>
         <div>
           <h1 class="font-weight-bold" :class="{ hovering: isHovering }">{{this.metaData.title}}</h1>
 
           <p class="pt-2">
-            <span>
+            <span class="pr-2">
               <v-icon small>calendar_today</v-icon>
-              &nbsp;{{this.metaData.date}}&nbsp;
+              {{this.metaData.date}}
             </span>
             
-            <span>
+            <span class="pr-2">
               <v-icon small>edit</v-icon>
-              &nbsp;{{this.metaData.author}}
+              {{this.metaData.author}}
+            </span>
+            
+            <span class="pr-2">
+              <v-icon small>folder_open</v-icon>
+              {{ this.metaData.category }}
             </span>
           </p>
         </div>
       </v-card-title>
 
-      <!-- Card Text -->
       <v-card-text class="py-0">
         <v-divider class="pa-3"></v-divider>
 
