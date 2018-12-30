@@ -43,8 +43,8 @@ import { IMetaData } from '../utils/github_api';
 
 @Component
 export default class ListItem extends Vue {
-  @Prop() private hash!: String;
-  @Prop() private metaData!: Object;
+  @Prop() private hash!: string;
+  @Prop() private metaData!: IMetaData;
 
   private isHovering: boolean = false;
 }
