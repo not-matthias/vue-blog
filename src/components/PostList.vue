@@ -11,9 +11,9 @@
           hide-actions
           row
           wrap
-          :items="filteredItems"
-          :search="this.search"
-          :custom-filter="filterItems"
+          :items="filteredFiles"
+          :search="search"
+          :custom-filter="customFilter"
           :rows-per-page-items="perPage"
           :pagination.sync="pagination"
         >
@@ -23,7 +23,7 @@
         </v-data-iterator>
       </v-container>
 
-      <div class="text-xs-center">
+      <div class="text-xs-center" v-if="showPagination">
         <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
       </div>
     </div>
@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import ListItem from '@/components/ListItem.vue';
 
 import config from '../config';
@@ -48,7 +48,7 @@ export default class PostList extends Vue {
 
   private loading: boolean = true;
   private files: IFile[] = [];
-  private filteredItems: IFile[] = [];
+  private filteredFiles: IFile[] = [];
 
   private perPage: number[] = [5];
   private pagination = {
@@ -74,24 +74,41 @@ export default class PostList extends Vue {
    */
   get pages() {
     if (this.pagination.rowsPerPage == null || this.pagination.totalItems == null) return 0;
-
     return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage);
+  }
+
+  /**
+   * Shows the pagination only when more than 1 post found.
+   * @returns boolean
+   */
+  get showPagination(): boolean {
+    return this.pagination.totalItems !== 0;
+  }
+
+  /**
+   * Update totalItems when switching to a different category.
+   */
+  @Watch('category')
+  private categoryWatcher() {
+    this.pagination.totalItems = this.customFilter(this.files, this.search, null).length;
+    this.$emit('update:pagination', this.pagination);
   }
 
   /**
    * Loads the post list.
    */
   private async loadList() {
-    this.filteredItems = this.files = await github_api.getList();
-    this.pagination.totalItems = this.filteredItems.length;
+    this.filteredFiles = this.files = await github_api.getList();
+    this.pagination.totalItems = this.files.length;
   }
 
   /**
-   * Custom item filter
+   * Custom item filter.
+   * @returns IFile[]
    */
-  private filterItems(items: IFile[], search: string, filter: any) {
+  private customFilter(items: IFile[], search: string, filter: any): IFile[] {
     // Category or Search?
-    if (this.category) {
+    if (this.category.length !== 0) {
       return items.filter(item => item.metaData.category === this.category);
     } else {
       return items.filter(item => item.metaData.title.includes(search));
@@ -99,7 +116,3 @@ export default class PostList extends Vue {
   }
 }
 </script>
-
-
-<style>
-</style>
