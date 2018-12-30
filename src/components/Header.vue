@@ -14,7 +14,7 @@
           flat
           v-for="(category, key) in categories"
           :key="key"
-          @click="$router.push({ name: `category`, params: {category}})"
+          @click="$router.push({ name: 'category', params: {category}})"
         >{{ category }}</v-btn>
 
         <v-btn flat @click="$router.push({ name: 'search' })">Search</v-btn>
