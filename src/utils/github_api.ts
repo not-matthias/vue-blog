@@ -76,7 +76,7 @@ export default {
    */
   async getList(): Promise<IFile[]> {
     if (cache.hasItem('list')) {
-      return Promise.resolve(JSON.parse(cache.getItem('list')));
+      return Promise.resolve(JSON.parse(cache.getItem('list') || ''));
     } else {
       // Get list
       const response = await axios.get<IListResponse[]>(getListUrl());
@@ -105,7 +105,7 @@ export default {
     const headers = { Accept: 'application/vnd.github.v3.raw' };
 
     if (cache.hasItem(cacheKey)) {
-      return Promise.resolve(cache.getItem(cacheKey));
+      return Promise.resolve(cache.getItem(cacheKey) || '');
     } else {
       // Get list
       const response = await axios.get<string>(getPostUrl(hash), { headers });
@@ -127,7 +127,7 @@ export default {
     const cacheKey = `meta.${hash}`;
 
     if (cache.hasItem(cacheKey)) {
-      return Promise.resolve(JSON.parse(cache.getItem(cacheKey)));
+      return Promise.resolve(JSON.parse(cache.getItem(cacheKey) || ''));
     } else {
       // Get list
       const response = await this.getRawContent(hash);

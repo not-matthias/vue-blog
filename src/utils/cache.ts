@@ -4,7 +4,7 @@ export default {
    * @param  {string} key
    */
   getItem(key: string) {
-    return this.isValid() && JSON.parse(window.sessionStorage.getItem(key) || '');
+    return this.isValid() && window.sessionStorage.getItem(key);
   },
 
   /**
@@ -14,7 +14,7 @@ export default {
    * @returns boolean
    */
   setItem(key: string, value: string): boolean {
-    return this.isValid() && window.sessionStorage.getItem('asdf') === null;
+    return this.isValid() && window.sessionStorage.setItem(key, value) === null;
   },
 
   /**
