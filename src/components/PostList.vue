@@ -44,6 +44,7 @@ import github_api, { IFile } from '../utils/github_api';
 })
 export default class PostList extends Vue {
   @Prop({ default: '' }) private search!: string;
+  @Prop({ default: '' }) private category!: string;
 
   private loading: boolean = true;
   private files: IFile[] = [];
@@ -89,7 +90,12 @@ export default class PostList extends Vue {
    * Custom item filter
    */
   private filterItems(items: IFile[], search: string, filter: any) {
-    return items.filter(item => item.metaData.title.includes(search));
+    // Category or Search?
+    if (this.category) {
+      return items.filter(item => item.metaData.category === this.category);
+    } else {
+      return items.filter(item => item.metaData.title.includes(search));
+    }
   }
 }
 </script>
