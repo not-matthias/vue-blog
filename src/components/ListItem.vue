@@ -41,13 +41,11 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { IMetaData } from '../utils/github_api';
 
-@Component({
-  props: {
-    hash: String,
-    metaData: Object
-  }
-})
+@Component
 export default class ListItem extends Vue {
+  @Prop() private hash!: String;
+  @Prop() private metaData!: Object;
+
   private isHovering: boolean = false;
 }
 </script>
