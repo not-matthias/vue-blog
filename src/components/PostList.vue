@@ -23,7 +23,7 @@
         </v-data-iterator>
       </v-container>
 
-      <div class="text-xs-center" v-if="showPagination">
+      <div class="text-xs-center">
         <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
       </div>
     </div>
@@ -75,25 +75,6 @@ export default class PostList extends Vue {
   get pages() {
     if (this.pagination.rowsPerPage == null || this.pagination.totalItems == null) return 0;
     return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage);
-  }
-
-  /**
-   * Shows the pagination only when more than 1 post found.
-   * @returns boolean
-   */
-  get showPagination(): boolean {
-    return this.pagination.totalItems !== 0;
-  }
-
-  /**
-   * Update totalItems when switching to a different category.
-   */
-  @Watch('category', { immediate: true, deep: true })
-  private categoryWatcher() {
-    console.log('watcher');
-
-    this.pagination.totalItems = this.customFilter(this.files, this.search || '', null).length;
-    this.$emit('update:pagination', this.pagination);
   }
 
   /**
