@@ -43,8 +43,8 @@ import github_api, { IFile } from '../utils/github_api';
   }
 })
 export default class PostList extends Vue {
-  @Prop({ default: '' }) private search!: string;
-  @Prop({ default: '' }) private category!: string;
+  @Prop({ default: '' }) private search?: string;
+  @Prop({ default: '' }) private category?: string;
 
   private loading: boolean = true;
   private files: IFile[] = [];
@@ -88,9 +88,11 @@ export default class PostList extends Vue {
   /**
    * Update totalItems when switching to a different category.
    */
-  @Watch('category')
+  @Watch('category', { immediate: true, deep: true })
   private categoryWatcher() {
-    this.pagination.totalItems = this.customFilter(this.files, this.search, null).length;
+    console.log('watcher');
+
+    this.pagination.totalItems = this.customFilter(this.files, this.search || '', null).length;
     this.$emit('update:pagination', this.pagination);
   }
 
@@ -108,7 +110,7 @@ export default class PostList extends Vue {
    */
   private customFilter(items: IFile[], search: string, filter: any): IFile[] {
     // Category or Search?
-    if (this.category.length !== 0) {
+    if (this.category) {
       return items.filter(item => item.metaData.category === this.category);
     } else {
       return items.filter(item => item.metaData.title.includes(search));
