@@ -82,8 +82,12 @@ export default class PostList extends Vue {
    * Loads the post list.
    */
   private async loadList() {
-    this.filteredFiles = this.files = await github_api.getList();
-    this.pagination.totalItems = this.files.length;
+    try {
+      this.filteredFiles = this.files = await github_api.getList();
+      this.pagination.totalItems = this.files.length;
+    } catch (error) {
+      // TODO: show the error
+    }
   }
 
   /**
