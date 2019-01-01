@@ -100,10 +100,5 @@ export default class PostList extends Vue {
       return items.filter(item => item.metaData.title.includes(search));
     }
   }
-
-  @Watch('category')
-  private updatePagination() {
-    console.log('updatePagination');
-  }
 }
 </script>

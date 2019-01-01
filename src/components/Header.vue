@@ -8,15 +8,6 @@
       <!-- Buttons -->
       <v-toolbar-items>
         <v-btn flat @click="$router.push({ name: 'posts' })">Posts</v-btn>
-
-        <!-- TODO: Replace with dynamic solution -->
-        <v-btn
-          flat
-          v-for="(category, key) in categories"
-          :key="key"
-          @click="$router.push({ name: 'category', params: {category}})"
-        >{{ category }}</v-btn>
-
         <v-btn flat @click="$router.push({ name: 'search' })">Search</v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -30,14 +21,12 @@ import config from '../config';
 @Component
 export default class Header extends Vue {
   private name: string = 'My Blog';
-  private categories: string[] = [];
 
   /**
    * Sets the variables via the config.
    */
   private created() {
     this.name = config.title;
-    this.categories = config.categories;
   }
 }
 </script>
