@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div onload="updatePagination">
     <div class="text-xs-center pa-5" v-if="loading">
       <v-progress-circular indeterminate/>
     </div>
@@ -45,6 +45,7 @@ import github_api, { IFile } from '../utils/github_api';
 export default class PostList extends Vue {
   @Prop({ default: '' }) private search?: string;
   @Prop({ default: '' }) private category?: string;
+  @Prop({ default: '' }) private tag?: string;
 
   private loading: boolean = true;
   private files: IFile[] = [];
@@ -90,12 +91,19 @@ export default class PostList extends Vue {
    * @returns IFile[]
    */
   private customFilter(items: IFile[], search: string, filter: any): IFile[] {
-    // Category or Search?
+    // Category, Tag or Search?
     if (this.category) {
       return items.filter(item => item.metaData.category === this.category);
+    } else if (this.tag) {
+      return items.filter(item => item.metaData.tags.includes(this.tag || ''));
     } else {
       return items.filter(item => item.metaData.title.includes(search));
     }
+  }
+
+  @Watch('category')
+  private updatePagination() {
+    console.log('updatePagination');
   }
 }
 </script>
