@@ -2,10 +2,14 @@
   <div>
     <Header/>
 
+    <notifications group="post"/>
+
+    <!-- If -->
     <div class="text-xs-center pa-5" v-if="loading">
       <v-progress-circular indeterminate/>
     </div>
 
+    <!-- Else -->
     <v-container v-else>
       <v-card class="pa-3" raised>
         <v-card-title primary-title>
@@ -85,7 +89,12 @@ export default class Post extends Vue {
       this.content = await github_api.getContent(this.$route.params.hash);
       this.metaData = await github_api.getMetaData(this.$route.params.hash);
     } catch (error) {
-      // TODO: show the error
+      this.$notify({
+        group: 'post',
+        type: 'error',
+        title: 'Error',
+        text: 'Failed to load post!'
+      });
     }
   }
 

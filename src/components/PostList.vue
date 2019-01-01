@@ -1,9 +1,13 @@
 <template>
-  <div onload="updatePagination">
+  <div>
+    <notifications group="postlist"/>
+
+    <!-- If -->
     <div class="text-xs-center pa-5" v-if="loading">
       <v-progress-circular indeterminate/>
     </div>
 
+    <!-- Else -->
     <div v-else>
       <v-container grid-list-xl>
         <v-data-iterator
@@ -86,7 +90,12 @@ export default class PostList extends Vue {
       this.filteredFiles = this.files = await github_api.getList();
       this.pagination.totalItems = this.files.length;
     } catch (error) {
-      // TODO: show the error
+      this.$notify({
+        group: 'postlist',
+        type: 'error',
+        title: 'Error',
+        text: 'Failed to load posts!'
+      });
     }
   }
 

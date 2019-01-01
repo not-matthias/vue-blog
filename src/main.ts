@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import Vuetify from 'vuetify';
+import VueNotification from 'vue-notification';
 
 // Stylesheets
 import 'vuetify/dist/vuetify.min.css';
@@ -11,6 +12,7 @@ import 'highlight.js/styles/darcula.css';
 Vue.config.productionTip = false;
 
 Vue.use(Vuetify);
+Vue.use(VueNotification);
 
 new Vue({
   router,
