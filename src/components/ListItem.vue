@@ -1,31 +1,16 @@
 <template>
   <div>
-    <v-card class="pa-3" raised @mouseover="isHovering=true" @mouseleave="isHovering=false">
+    <v-card class="pa-3" raised hover>
       <v-card-title primary-title>
         <div>
           <h1
             :class="{ hovering: isHovering }"
+            class="card-title"
             @click="$router.push({ name: 'post', params: { hash } })"
-          >{{this.metaData.title}}</h1>
+          >{{metaData.title}}</h1>
 
           <p class="pt-2">
-            <span class="pr-2">
-              <v-icon small>calendar_today</v-icon>
-              {{this.metaData.date}}
-            </span>
-            
-            <span class="pr-2">
-              <v-icon small>edit</v-icon>
-              {{this.metaData.author}}
-            </span>
-            
-            <span
-              class="link"
-              @click="$router.push({ name: 'category', params: { category: metaData.category }})"
-            >
-              <v-icon small>folder_open</v-icon>
-              {{this.metaData.category}}
-            </span>
+            <PostData :metaData="metaData"/>
           </p>
         </div>
       </v-card-title>
@@ -41,9 +26,15 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+import PostData from '@/components/PostData.vue';
+
 import { IMetaData } from '../utils/github_api';
 
-@Component
+@Component({
+  components: {
+    PostData
+  }
+})
 export default class ListItem extends Vue {
   @Prop() private hash!: string;
   @Prop() private metaData!: IMetaData;
@@ -57,12 +48,8 @@ h1 {
   transition: all 0.3s;
 }
 
-.hovering {
+.card-title:hover {
   cursor: pointer;
   color: #c62828;
-}
-
-.link {
-  cursor: pointer;
 }
 </style>

@@ -20,20 +20,7 @@
                   <h1 class="font-weight-bold">{{ metaData.title }}</h1>
 
                   <p class="pt-2">
-                    <span class="pr-2">
-                      <v-icon small>calendar_today</v-icon>
-                      {{this.metaData.date}}
-                    </span>
-                    
-                    <span class="pr-2">
-                      <v-icon small>edit</v-icon>
-                      {{this.metaData.author}}
-                    </span>
-                    
-                    <span class="pr-2">
-                      <v-icon small>folder_open</v-icon>
-                      {{ this.metaData.category }}
-                    </span>
+                    <PostData :metaData="metaData"/>
                   </p>
                 </div>
               </v-card-title>
@@ -56,6 +43,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
+import PostData from '@/components/PostData.vue';
 
 import config from '../config';
 import marked from '../utils/renderer';
@@ -68,7 +56,8 @@ import fm from 'front-matter';
 @Component({
   components: {
     Footer,
-    Header
+    Header,
+    PostData
   }
 })
 export default class Post extends Vue {
