@@ -2,13 +2,7 @@
   <div>
     <Header/>
 
-    <v-container>
-      <div class="tag-card pl-4 pa-3 ma-4">
-        <h1>Tag: {{$route.params.tag}}</h1>
-      </div>
-
-      <PostList :tag="$route.params.tag"/>
-    </v-container>
+    <PostList :tag="$route.params.tag"/>
 
     <Footer/>
   </div>
@@ -29,12 +23,4 @@ import PostList from '@/components/PostList.vue';
 })
 export default class Category extends Vue {}
 </script>
-
-<style>
-.tag-card {
-  background-color: white;
-  border: 1px solid #ddd;
-  border-left: 4px solid black;
-}
-</style>
 

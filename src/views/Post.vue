@@ -10,32 +10,38 @@
     </div>
 
     <!-- Else -->
-    <v-container v-else>
-      <v-card class="pa-3" raised>
-        <v-card-title primary-title>
-          <div>
-            <h1 class="font-weight-bold">{{ metaData.title }}</h1>
+    <div v-else>
+      <v-container>
+        <v-layout row wrap>
+          <v-flex xs10 offset-xs1>
+            <v-card class="pa-3" raised>
+              <v-card-title primary-title>
+                <div>
+                  <h1 class="font-weight-bold">{{ metaData.title }}</h1>
 
-            <p class="pt-2">
-              <span>
-                <v-icon small>calendar_today</v-icon>
-                &nbsp;{{ metaData.date }}&nbsp;
-              </span>
-              
-              <span>
-                <v-icon small>edit</v-icon>
-                &nbsp;{{ metaData.author }}
-              </span>
-            </p>
-          </div>
-        </v-card-title>
+                  <p class="pt-2">
+                    <span>
+                      <v-icon small>calendar_today</v-icon>
+                      &nbsp;{{ metaData.date }}&nbsp;
+                    </span>
+                    
+                    <span>
+                      <v-icon small>edit</v-icon>
+                      &nbsp;{{ metaData.author }}
+                    </span>
+                  </p>
+                </div>
+              </v-card-title>
 
-        <v-card-text class="pt-0">
-          <v-divider class="pa-3"></v-divider>
-          <article v-html="htmlContent()"></article>
-        </v-card-text>
-      </v-card>
-    </v-container>
+              <v-card-text class="pt-0">
+                <v-divider class="pa-3"></v-divider>
+                <article v-html="htmlContent()"></article>
+              </v-card-text>
+            </v-card>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </div>
 
     <Footer/>
   </div>

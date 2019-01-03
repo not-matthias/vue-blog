@@ -2,13 +2,7 @@
   <div>
     <Header/>
 
-    <v-container>
-      <div class="category-card pl-4 pa-3 ma-4">
-        <h1>Category: {{$route.params.category}}</h1>
-      </div>
-
-      <PostList :category="$route.params.category"/>
-    </v-container>
+    <PostList :category="$route.params.category"/>
 
     <Footer/>
   </div>
@@ -29,12 +23,4 @@ import PostList from '@/components/PostList.vue';
 })
 export default class Category extends Vue {}
 </script>
-
-<style>
-.category-card {
-  background-color: white;
-  border: 1px solid #ddd;
-  border-left: 4px solid black;
-}
-</style>
 
