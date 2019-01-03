@@ -1,15 +1,12 @@
 <template>
   <div>
-    <v-card
-      class="pa-3"
-      raised
-      :to="{ name: 'post', params: { hash: this.hash } }"
-      @mouseover="isHovering=true"
-      @mouseleave="isHovering=false"
-    >
+    <v-card class="pa-3" raised @mouseover="isHovering=true" @mouseleave="isHovering=false">
       <v-card-title primary-title>
         <div>
-          <h1 class="font-weight-bold" :class="{ hovering: isHovering }">{{this.metaData.title}}</h1>
+          <h1
+            :class="{ hovering: isHovering }"
+            @click="$router.push({ name: 'post', params: { hash } })"
+          >{{this.metaData.title}}</h1>
 
           <p class="pt-2">
             <span class="pr-2">
@@ -22,9 +19,12 @@
               {{this.metaData.author}}
             </span>
             
-            <span class="pr-2">
+            <span
+              class="link"
+              @click="$router.push({ name: 'category', params: { category: metaData.category }})"
+            >
               <v-icon small>folder_open</v-icon>
-              {{ this.metaData.category }}
+              {{this.metaData.category}}
             </span>
           </p>
         </div>
@@ -56,7 +56,13 @@ export default class ListItem extends Vue {
 h1 {
   transition: all 0.3s;
 }
+
 .hovering {
+  cursor: pointer;
   color: #c62828;
+}
+
+.link {
+  cursor: pointer;
 }
 </style>
