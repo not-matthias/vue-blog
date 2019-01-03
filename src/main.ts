@@ -4,7 +4,10 @@ import router from './router';
 import Vuetify from 'vuetify';
 import VueNotification from 'vue-notification';
 
-// Stylesheets
+// Import service worker
+import './registerServiceWorker';
+
+// Import stylesheets
 import 'vuetify/dist/vuetify.min.css';
 import 'material-design-icons-iconfont/dist/material-design-icons.css';
 import 'highlight.js/styles/darcula.css';
