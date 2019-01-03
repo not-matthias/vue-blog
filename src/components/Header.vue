@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar dense>
+    <v-toolbar dense dark>
       <v-toolbar-title>{{name}}</v-toolbar-title>
 
       <v-spacer></v-spacer>
