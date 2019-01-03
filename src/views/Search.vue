@@ -3,7 +3,10 @@
     <Header/>
 
     <v-container>
-      <v-text-field v-model="search" label="Search"></v-text-field>
+      <v-flex xs10 offset-xs1>
+        <v-text-field v-model="search" label="Search"></v-text-field>
+      </v-flex>
+
       <PostList :search="search"/>
     </v-container>
 
