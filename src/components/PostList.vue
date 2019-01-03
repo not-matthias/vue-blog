@@ -13,8 +13,8 @@
         <!-- Title -->
         <v-flex v-if="tag || category" xs10 offset-xs1 xl8 offset-xl2>
           <div class="custom-card pa-3 pl-4 my-4">
-            <h1 v-show="tag">Tag: {{tag}}</h1>
-            <h1 v-show="category">Category: {{category}}</h1>
+            <h1 v-show="tag">Tag: {{ tag }}</h1>
+            <h1 v-show="category">Category: {{ category }}</h1>
           </div>
         </v-flex>
 

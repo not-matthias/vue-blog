@@ -3,13 +3,13 @@
     <!-- Calendar -->
     <span class="pr-2">
       <v-icon small>calendar_today</v-icon>
-      {{this.metaData.date}}
+      {{ metaData.date }}
     </span>
 
     <!-- Author -->
     <span class="pr-2">
       <v-icon small>edit</v-icon>
-      {{this.metaData.author}}
+      {{ metaData.author }}
     </span>
 
     <!-- Category -->
@@ -18,7 +18,7 @@
       @click="$router.push({ name: 'category', params: { category: metaData.category }})"
     >
       <v-icon small>folder_open</v-icon>
-      {{this.metaData.category}}
+      {{ metaData.category }}
     </span>
 
     <!-- Tags -->
