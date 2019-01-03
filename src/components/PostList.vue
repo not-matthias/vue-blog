@@ -11,7 +11,7 @@
     <div v-else>
       <v-container grid-list-xl>
         <!-- Title -->
-        <v-flex v-if="tag || category" xs10 offset-xs1>
+        <v-flex v-if="tag || category" xs10 offset-xs1 xl8 offset-xl2>
           <div class="custom-card pa-3 pl-4 my-4">
             <h1 v-show="tag">Tag: {{tag}}</h1>
             <h1 v-show="category">Category: {{category}}</h1>
@@ -30,7 +30,7 @@
           :rows-per-page-items="perPage"
           :pagination.sync="pagination"
         >
-          <v-flex xs10 offset-xs1 slot="item" slot-scope="file">
+          <v-flex xs10 offset-xs1 xl8 offset-xl2 slot="item" slot-scope="file">
             <ListItem :hash="file.item.hash" :metaData="file.item.metaData"/>
           </v-flex>
         </v-data-iterator>
