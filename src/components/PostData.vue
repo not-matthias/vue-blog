@@ -34,7 +34,7 @@ export default class PostData extends Vue {
 </script>
 
 <style scoped>
-.link {
+.link:hover {
   cursor: pointer;
 }
 </style>

@@ -1,13 +1,15 @@
 <template>
   <div>
-    <v-card class="pa-3" raised>
+    <v-card
+      class="pa-3"
+      raised
+      :to="{ name: 'post', params: { hash } }"
+      @mouseover="isHovering=true"
+      @mouseleave="isHovering=false"
+    >
       <v-card-title primary-title>
         <div>
-          <h1
-            :class="{ hovering: isHovering }"
-            class="card-title"
-            @click="$router.push({ name: 'post', params: { hash } })"
-          >{{metaData.title}}</h1>
+          <h1 :class="{ hovering: isHovering }">{{metaData.title}}</h1>
 
           <p class="pt-2">
             <PostData :metaData="metaData"/>
@@ -48,8 +50,7 @@ h1 {
   transition: all 0.3s;
 }
 
-.card-title:hover {
-  cursor: pointer;
+.hovering {
   color: #c62828;
 }
 </style>
