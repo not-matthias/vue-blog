@@ -20,5 +20,9 @@ yarn-error.log*
 *.sln
 *.sw*
 
+# Testing
+selenium-debug.log
+/tests/e2e/reports/
+
 # Custom rules
 package-lock.json
