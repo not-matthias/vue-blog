@@ -11,9 +11,7 @@
         <div>
           <h1 :class="{ hovering: isHovering }">{{metaData.title}}</h1>
 
-          <p class="pt-2">
-            <PostData :metaData="metaData"/>
-          </p>
+          <PostData class="pt-2" :metaData="metaData"/>
         </div>
       </v-card-title>
 
