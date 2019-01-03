@@ -20,14 +20,19 @@
                   <h1 class="font-weight-bold">{{ metaData.title }}</h1>
 
                   <p class="pt-2">
-                    <span>
+                    <span class="pr-2">
                       <v-icon small>calendar_today</v-icon>
-                      &nbsp;{{ metaData.date }}&nbsp;
+                      {{this.metaData.date}}
                     </span>
                     
-                    <span>
+                    <span class="pr-2">
                       <v-icon small>edit</v-icon>
-                      &nbsp;{{ metaData.author }}
+                      {{this.metaData.author}}
+                    </span>
+                    
+                    <span class="pr-2">
+                      <v-icon small>folder_open</v-icon>
+                      {{ this.metaData.category }}
                     </span>
                   </p>
                 </div>
