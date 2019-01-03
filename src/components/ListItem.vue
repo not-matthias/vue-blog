@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="pa-3" raised hover>
+    <v-card class="pa-3" raised>
       <v-card-title primary-title>
         <div>
           <h1
