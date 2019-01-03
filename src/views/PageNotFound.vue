@@ -1,11 +1,29 @@
 <template>
-  <div align="center">
+  <div>
     <Header/>
 
-    <v-container>
-      <h1>Page not found.</h1>
+    <v-container text-xs-center>
+      <h1 class="display-4 mt-5">404</h1>
+      <h2 class="display-1">Page not found.</h2>
     </v-container>
 
     <Footer/>
   </div>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
+import PostList from '@/components/PostList.vue';
+
+@Component({
+  components: {
+    Footer,
+    Header,
+    PostList
+  }
+})
+export default class Category extends Vue {}
+</script>
+
