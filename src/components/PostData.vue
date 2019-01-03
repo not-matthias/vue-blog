@@ -14,12 +14,24 @@
 
     <!-- Category -->
     <span
-      class="link"
+      class="pr-2 link"
       @click="$router.push({ name: 'category', params: { category: metaData.category }})"
     >
       <v-icon small>folder_open</v-icon>
       {{this.metaData.category}}
     </span>
+
+    <!-- Tags -->
+    <!-- <span>
+      <v-icon small class="pr-1">label</v-icon>
+
+      <span
+        class="link"
+        v-for="(tag, key) in metaData.tags"
+        :key="key"
+        @click="$router.push({ name: 'tag', params: { tag }})"
+      >{{ tag.concat((metaData.tags.indexOf(tag) != metaData.tags.length - 1) ? ", " : "") }}</span>
+    </span>-->
   </div>
 </template>
 
