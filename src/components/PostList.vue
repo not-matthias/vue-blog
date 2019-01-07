@@ -88,8 +88,17 @@ export default class PostList extends Vue {
    * @returns number
    */
   get pages() {
-    if (this.pagination.rowsPerPage == null || this.pagination.totalItems == null) return 0;
-    return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage);
+    let length: number = this.pagination.totalItems;
+
+    if (this.category) {
+      length = this.customFilter(this.files, this.category, null).length;
+    } else if (this.tag) {
+      const length: number = this.customFilter(this.files, this.tag, null).length;
+    } else if (this.pagination.rowsPerPage == null || this.pagination.totalItems == null) {
+      return 0;
+    }
+
+    return Math.ceil(length / this.pagination.rowsPerPage);
   }
 
   /**
