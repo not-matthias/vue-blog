@@ -35,6 +35,11 @@ const routes = [
     component: () => import('./views/Tag.vue')
   },
   {
+    path: '/author/:author',
+    name: 'author',
+    component: () => import('./views/Author.vue')
+  },
+  {
     path: '*',
     name: '404',
     component: () => import('./views/PageNotFound.vue')
