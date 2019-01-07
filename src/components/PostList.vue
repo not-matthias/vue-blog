@@ -93,7 +93,7 @@ export default class PostList extends Vue {
     if (this.category) {
       length = this.customFilter(this.files, this.category, null).length;
     } else if (this.tag) {
-      const length: number = this.customFilter(this.files, this.tag, null).length;
+      length = this.customFilter(this.files, this.tag, null).length;
     } else if (this.pagination.rowsPerPage == null || this.pagination.totalItems == null) {
       return 0;
     }
