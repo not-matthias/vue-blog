@@ -3,6 +3,7 @@ import App from './App.vue';
 import router from './router';
 import Vuetify from 'vuetify';
 import VueNotification from 'vue-notification';
+import VueParticles from 'vue-particles';
 
 // Import service worker
 import './registerServiceWorker';
@@ -16,6 +17,7 @@ Vue.config.productionTip = false;
 
 Vue.use(Vuetify);
 Vue.use(VueNotification);
+Vue.use(VueParticles);
 
 new Vue({
   router,
