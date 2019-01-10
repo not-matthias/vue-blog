@@ -73,6 +73,13 @@ export default class Post extends Vue {
   };
 
   /**
+   * Generates the html content from markdown.
+   */
+  private get htmlContent(): string {
+    return marked(this.content);
+  }
+
+  /**
    * Loads the post when created.
    */
   private created() {
@@ -96,13 +103,6 @@ export default class Post extends Vue {
         text: 'Failed to load post!'
       });
     }
-  }
-
-  /**
-   * Generates the html content from markdown.
-   */
-  private htmlContent(): string {
-    return marked(this.content);
   }
 }
 </script>
