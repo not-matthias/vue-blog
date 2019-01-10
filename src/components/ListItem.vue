@@ -1,24 +1,27 @@
 <template>
   <div>
-    <v-card
-      class="pa-3"
-      raised
-      :to="{ name: 'post', params: { hash }}"
-      @mouseover="isHovering=true"
-      @mouseleave="isHovering=false"
-    >
+    <v-card class="pa-3" raised @mouseover="isHovering=true" @mouseleave="isHovering=false">
       <v-card-title primary-title>
         <div>
+          <!-- Title -->
           <h1 :class="{ hovering: isHovering }">{{ metaData.title }}</h1>
 
+          <!-- PostData -->
           <PostData class="pt-2" :metaData="metaData"/>
         </div>
       </v-card-title>
 
       <v-card-text class="py-0">
+        <!-- Divider -->
         <v-divider class="pa-3"></v-divider>
 
-        <p>{{ metaData.description }}</p>
+        <!-- Description -->
+        <p class="pt-0">{{ metaData.description }}</p>
+
+        <!-- Read more -->
+        <v-flex offset-xs10>
+          <v-btn outline color="red darken-3" :to="{ name: 'post', params: { hash }}">Read more</v-btn>
+        </v-flex>
       </v-card-text>
     </v-card>
   </div>
@@ -49,6 +52,6 @@ h1 {
 }
 
 .hovering {
-  color: #c62828;
+  color: #c62828; /* = red darken-3 */
 }
 </style>
