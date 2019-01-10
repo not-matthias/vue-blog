@@ -7,7 +7,10 @@
     </span>
 
     <!-- Author -->
-    <span class="pr-2">
+    <span
+      class="pr-2 link"
+      @click="$router.push({ name: 'author', params: { category: metaData.author }})"
+    >
       <v-icon small>edit</v-icon>
       {{ metaData.author }}
     </span>
