@@ -1,10 +1,10 @@
 <template>
   <div>
-    <v-card class="pa-3" raised @mouseover="isHovering=true" @mouseleave="isHovering=false">
+    <v-card class="pa-3" raised>
       <v-card-title primary-title>
         <div>
           <!-- Title -->
-          <h1 :class="{ hovering: isHovering }">{{ metaData.title }}</h1>
+          <h1 class="list-item-title">{{ metaData.title }}</h1>
 
           <!-- PostData -->
           <PostData class="pt-2" :metaData="metaData"/>
@@ -51,7 +51,8 @@ h1 {
   transition: all 0.3s;
 }
 
-.hovering {
+.list-item-title:hover {
   color: #c62828; /* = red darken-3 */
+  cursor: pointer;
 }
 </style>
