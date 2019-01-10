@@ -11,7 +11,7 @@
         </div>
       </v-card-title>
 
-      <v-card-text class="py-0">
+      <v-card-text>
         <!-- Divider -->
         <v-divider class="pa-3"></v-divider>
 
