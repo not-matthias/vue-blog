@@ -19,9 +19,16 @@
         <p class="pt-0">{{ metaData.description }}</p>
 
         <!-- Read more -->
-        <v-flex offset-xs10>
-          <v-btn outline color="red darken-3" :to="{ name: 'post', params: { hash }}">Read more</v-btn>
-        </v-flex>
+        <v-layout align-center justify-end>
+          <v-flex offset-xs10>
+            <v-btn
+              outline
+              color="red darken-3"
+              class="pr-3"
+              :to="{ name: 'post', params: { hash }}"
+            >Read more</v-btn>
+          </v-flex>
+        </v-layout>
       </v-card-text>
     </v-card>
   </div>
