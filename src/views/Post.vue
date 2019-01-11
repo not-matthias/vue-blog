@@ -28,7 +28,7 @@
               <v-card-text class="pt-0">
                 <v-divider class="pa-3"></v-divider>
 
-                <article class="markdown-body" v-html="htmlContent"></article>
+                <article v-html="htmlContent"></article>
               </v-card-text>
             </v-card>
           </v-flex>
@@ -112,16 +112,11 @@ export default class Post extends Vue {
 /* @import url('/github-markdown-css/github-markdown.css'); */
 
 pre {
-  background-color: #2b2b2b;
+  background-color: WhiteSmoke;
   padding: 16px;
+  margin-bottom: 1rem;
   overflow-x: auto;
   white-space: pre;
-}
-
-code {
-  background: #2b2b2b;
-  /* font-family: 'Ubuntu Mono', 'PT Mono', Consolas, Monaco, Menlo, monospace !important; */
-  box-shadow: none;
 }
 
 blockquote {

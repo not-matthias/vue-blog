@@ -10,10 +10,12 @@ renderer.code = (code: string, language: string, isEscaped: boolean) => {
   if (hljs.getLanguage(language)) highlighted = hljs.highlight(language, code);
   else highlighted = hljs.highlightAuto(code);
 
-  // TODO: use custom directive
-  // return `<pre v-highlightjs><code class="${escape(language)}">${code}</code></pre>`;
+  // Working:
+  return `<pre>${highlighted.value}</pre>`;
+  // return `<pre class="${escape(language)}>${highlighted.value}</pre>`;
 
-  return `<pre><code class="lang-${escape(language)}">${highlighted.value}</code></pre>`;
+  // Strange highlighting (from the docs):
+  // return `<pre ><code class="${escape(language)}">${highlighted.value}</code></pre>`;
 };
 
 marked.setOptions({
