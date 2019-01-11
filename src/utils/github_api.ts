@@ -164,7 +164,7 @@ export default {
 
     // Remove meta data
     const lines: string[] = response.split('\n');
-    lines.splice(0, 7);
+    lines.splice(0, 8);
 
     // Return it
     return lines.join('\n');
