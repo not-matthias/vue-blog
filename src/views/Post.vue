@@ -27,7 +27,8 @@
 
               <v-card-text class="pt-0">
                 <v-divider class="pa-3"></v-divider>
-                <article v-html="htmlContent"></article>
+
+                <article class="markdown-body" v-html="htmlContent"></article>
               </v-card-text>
             </v-card>
           </v-flex>
@@ -108,6 +109,8 @@ export default class Post extends Vue {
 </script>
 
 <style>
+/* @import url('/github-markdown-css/github-markdown.css'); */
+
 pre {
   background-color: #2b2b2b;
   padding: 16px;

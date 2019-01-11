@@ -1,5 +1,5 @@
 import marked from 'marked';
-import highlight from 'highlight.js';
+import hljs from 'highlight.js';
 
 const renderer = new marked.Renderer();
 
@@ -7,8 +7,11 @@ renderer.code = (code: string, language: string, isEscaped: boolean) => {
   let highlighted;
 
   // Use auto formatting if no language defined
-  if (highlight.getLanguage(language)) highlighted = highlight.highlight(language, code);
-  else highlighted = highlight.highlightAuto(code);
+  if (hljs.getLanguage(language)) highlighted = hljs.highlight(language, code);
+  else highlighted = hljs.highlightAuto(code);
+
+  // TODO: use custom directive
+  // return `<pre v-highlightjs><code class="${escape(language)}">${code}</code></pre>`;
 
   return `<pre><code class="lang-${escape(language)}">${highlighted.value}</code></pre>`;
 };
