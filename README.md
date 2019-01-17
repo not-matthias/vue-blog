@@ -1,5 +1,10 @@
 # vue-blog
-To view the demo, click [here](not-matthias.github.io).
+
+![alt](images/Home.png)
+
+<div align="center">
+  To view the demo, click <a href="https://not-matthias.github.io">here</a>.
+</div>
 
 ## Features
 - Hosting on GitHub Pages
