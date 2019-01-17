@@ -13,7 +13,7 @@
     <div v-else>
       <v-container>
         <v-layout row wrap>
-          <v-flex xs10 offset-xs1>
+          <v-flex xs10 offset-xs1 xl8 offset-xl2>
             <v-card class="pa-3" raised>
               <v-card-title primary-title>
                 <div>
