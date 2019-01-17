@@ -7,8 +7,18 @@
         <v-container fill-height>
           <v-layout align-center>
             <v-flex text-xs-center>
-              <h1 class="font-weight-thin display-4 pb-3">Welcome</h1>
-              <h3 class="font-weight-thin headline">I write about different computer science topics.</h3>
+              <h1
+                :class="{
+                  'display-4 pb-3' : $vuetify.breakpoint.smAndUp, 
+                  'display-3 pb-1': $vuetify.breakpoint.xsOnly,
+                }"
+              >Welcome</h1>
+              <h3
+                :class="{
+                  'headline' : $vuetify.breakpoint.smAndUp, 
+                  'body-2': $vuetify.breakpoint.xsOnly,
+                }"
+              >I write about different computer science topics.</h3>
             </v-flex>
           </v-layout>
         </v-container>
