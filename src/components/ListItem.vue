@@ -4,7 +4,10 @@
       <v-card-title primary-title>
         <div>
           <!-- Title -->
-          <h1 class="list-item-title">{{ metaData.title }}</h1>
+          <h1
+            class="list-item-title"
+            @click="$router.push({ name: 'post', params: { hash }})"
+          >{{ metaData.title }}</h1>
 
           <!-- PostData -->
           <PostData class="pt-2" :metaData="metaData"/>
