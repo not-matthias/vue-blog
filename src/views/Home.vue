@@ -3,7 +3,16 @@
     <Header/>
 
     <v-container>
-      <h1>This is the homepage.</h1>
+      <v-jumbotron color="grey darken-3" dark>
+        <v-container fill-height>
+          <v-layout align-center>
+            <v-flex text-xs-center>
+              <h1 class="font-weight-thin display-4 pb-3">Welcome</h1>
+              <h3 class="font-weight-thin headline">I write about different computer science topics.</h3>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-jumbotron>
     </v-container>
 
     <Footer/>
