@@ -1,5 +1,5 @@
 # vue-blog
-To view the demo, click <a href="not-matthias.github.io">here</a>.
+To view the demo, click [here](not-matthias.github.io).
 
 ## Features
 - Hosting on GitHub Pages
@@ -44,10 +44,10 @@ Travis is responsible for building and deploying your repository to another one.
 
 1. Change the build repository to your own
 
-2. Add an <a href="https://blog.travis-ci.com/2014-08-22-environment-variables/">environment variable</a> for the <a href="https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/">GH_TOKEN</a>. 
+2. Add an [environment variable](https://blog.travis-ci.com/2014-08-22-environment-variables/) for the [GH_TOKEN](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/). 
 
 ### Deploying
-Go to <a href="https://travis-ci.org">https://travis-ci.org</a> and log in with your github account. Then go to your repository with the blog and trigger a build. After travis successfully deployed the repository, you can check it out on your website.
+Go to [travis-ci.org](https://travis-ci.org) and log in with your github account. Then go to your repository with the blog and trigger a build. After travis successfully deployed the repository, you can check it out on your website.
 
 
 ## Troubleshooting
