@@ -26,7 +26,7 @@ You want to have your own blog? Nothing easier than that.
 ### Fork the project
 Just click on the fork button on the right side.
 
-![alt](images/Fork_Unedited.jpg)
+![alt](images/Fork.jpg)
 
 ### Change the config (`src/config.ts`)
 After cloning your fork, you can can change the config file. The config contains following options: 
