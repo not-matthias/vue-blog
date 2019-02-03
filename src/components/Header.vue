@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar dense dark>
-      <v-toolbar-title>{{ name }}</v-toolbar-title>
+      <v-toolbar-title class="home" @click="$router.push({ name: 'home' })">{{ name }}</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -30,3 +30,9 @@ export default class Header extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.home {
+  cursor: pointer;
+}
+</style>
