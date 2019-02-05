@@ -41,7 +41,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { IMetaData } from '../utils/github_api';
+import { IMetaData } from '@/utils/github_api';
 
 @Component
 export default class PostData extends Vue {

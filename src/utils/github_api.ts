@@ -1,6 +1,6 @@
+import config from '@/config';
+import cache from '@/utils/cache';
 import axios from 'axios';
-import config from '../config';
-import cache from './cache';
 import fm from 'front-matter';
 import moment from 'moment';
 

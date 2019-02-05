@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import config from '../config';
+import config from '@/config';
 
 @Component
 export default class Header extends Vue {

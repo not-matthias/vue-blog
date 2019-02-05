@@ -41,7 +41,7 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import PostData from '@/components/PostData.vue';
 
-import { IMetaData } from '../utils/github_api';
+import { IMetaData } from '@/utils/github_api';
 
 @Component({
   components: {

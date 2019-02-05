@@ -48,8 +48,8 @@
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import ListItem from '@/components/ListItem.vue';
 
-import config from '../config';
-import github_api, { IFile } from '../utils/github_api';
+import config from '@/config';
+import github_api, { IFile } from '@/utils/github_api';
 
 @Component({
   components: {

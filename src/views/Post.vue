@@ -46,9 +46,9 @@ import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 import PostData from '@/components/PostData.vue';
 
-import config from '../config';
-import marked from '../utils/renderer';
-import github_api, { IFile, IMetaData } from '../utils/github_api';
+import config from '@/config';
+import marked from '@/utils/renderer';
+import github_api, { IFile, IMetaData } from '@/utils/github_api';
 
 import highlight from 'highlight.js';
 import moment from 'moment';
