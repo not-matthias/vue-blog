@@ -75,9 +75,6 @@ export default {
    * @returns Promise<IFile[]>
    */
   async getList(): Promise<IFile[]> {
-    if (cache.hasItem('list')) {
-      return Promise.resolve(JSON.parse(cache.getItem('list') || ''));
-    } else {
       // Get list
       const response = await axios.get<IListResponse[]>(getListUrl());
 
@@ -87,12 +84,8 @@ export default {
       // Resolve all promises
       const list = await Promise.all(promise);
 
-      // Save into cache
-      cache.setItem('list', JSON.stringify(list));
-
       // Return it
       return list;
-    }
   },
 
   /**
