@@ -111,11 +111,52 @@ export default class Post extends Vue {
 <style>
 /* @import url('/github-markdown-css/github-markdown.css'); */
 
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+  transition: all 0.3s;
+}
+
+a:hover {
+  color: #c62828; /* = red darken-3 */
+  cursor: pointer;
+}
+
+p {
+  margin-bottom: 0px;
+}
+
+h2 {
+  margin-top: 1em;
+}
+
+h3 {
+  margin-top: 1em;
+}
+
+h4 {
+  margin-top: 1em;
+}
+
+img {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
 pre {
+  margin-top: 1em;
+  margin-bottom: 1rem;
   background-color: WhiteSmoke;
   padding: 16px;
-  margin-bottom: 1rem;
   overflow-x: auto;
+  white-space: pre;
+}
+
+code {
+  font-weight: normal;
+  margin-top: 0.5em;
+  background-color: WhiteSmoke;
   white-space: pre;
 }
 
@@ -123,5 +164,13 @@ blockquote {
   margin: 0;
   padding: 0 16px;
   border-left: 4px solid #ddd;
+}
+
+span {
+  color: black !important;
+}
+
+code {
+  color: black !important;
 }
 </style>
