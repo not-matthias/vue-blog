@@ -1,12 +1,12 @@
 <template>
   <div>
-    <Header/>
+    <Header />
 
-    <notifications group="post"/>
+    <notifications group="post" />
 
     <!-- If -->
     <div class="text-xs-center pa-5" v-if="loading">
-      <v-progress-circular indeterminate/>
+      <v-progress-circular indeterminate />
     </div>
 
     <!-- Else -->
@@ -20,7 +20,7 @@
                   <h1 class="font-weight-bold">{{ metaData.title }}</h1>
 
                   <p class="pt-2">
-                    <PostData :metaData="metaData"/>
+                    <PostData :metaData="metaData" />
                   </p>
                 </div>
               </v-card-title>
@@ -34,9 +34,20 @@
           </v-flex>
         </v-layout>
       </v-container>
+
+      <!-- Comments -->
+      <component
+        is="script"
+        src="https://utteranc.es/client.js"
+        repo="not-matthias/not-matthias.github.io"
+        issue-term="title"
+        theme="github-light"
+        crossorigin="anonymous"
+        async
+      />
     </div>
 
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
@@ -96,6 +107,8 @@ export default class Post extends Vue {
     try {
       this.content = await github_api.getContent(this.$route.params.hash);
       this.metaData = await github_api.getMetaData(this.$route.params.hash);
+
+      document.title = this.metaData.title;
     } catch (error) {
       this.$notify({
         group: 'post',
