@@ -11,13 +11,16 @@
 
     <!-- Else -->
     <div v-else>
-      <v-container>
+      <v-container class="blog-post">
         <v-layout row wrap>
           <v-flex xs12 sm10 offset-sm1 xl8 offset-xl2>
             <v-card class="pa-3" raised>
               <v-card-title primary-title>
                 <div>
-                  <h1 class="font-weight-bold">{{ metaData.title }}</h1>
+                  <h1
+                    class="font-weight-bold"
+                    style="border-bottom: none; padding-bottom: 0"
+                  >{{ metaData.title }}</h1>
 
                   <p class="pt-2">
                     <PostData :metaData="metaData" />
@@ -124,6 +127,11 @@ export default class Post extends Vue {
 <style>
 /* @import url('/github-markdown-css/github-markdown.css'); */
 
+.blog-post {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
 a {
   text-decoration: none;
   font-weight: bold;
@@ -137,26 +145,67 @@ a:hover {
 }
 
 p {
-  margin-bottom: 0px;
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 2em;
 }
 
 h2 {
-  margin-top: 1em;
+  font-size: 1.5em;
 }
 
 h3 {
-  margin-top: 1em;
+  font-size: 1.25em;
 }
 
 h4 {
-  margin-top: 1em;
+  font-size: 1em;
 }
 
+h5 {
+  font-size: 0.875em;
+}
+
+h6 {
+  color: #6a737d;
+  font-size: 0.85em;
+}
+
+h1,
+h2 {
+  border-bottom: 1px solid #eaecef;
+  padding-bottom: 0.3em;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  margin-top: 24px;
+}
+
+/* Formatting for images */
 img {
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 0;
+  margin-bottom: 16px;
+  max-width: 100%;
+  box-sizing: initial;
+  background-color: #fff;
 }
 
+/* Formatting for lists */
+li + li {
+  /* Leave space between list items */
+  margin-top: 0.25em;
+}
+
+/* Formatting for code blocks */
 pre {
   margin-top: 1em;
   margin-bottom: 1rem;
@@ -164,25 +213,32 @@ pre {
   padding: 16px;
   overflow-x: auto;
   white-space: pre;
+
+  border-radius: 3px;
 }
 
+/* Formatting for syntax highlighting */
 code {
   font-weight: normal;
-  margin-top: 0.5em;
-  background-color: WhiteSmoke;
-  white-space: pre;
-}
+  box-shadow: none;
 
-blockquote {
+  background-color: rgba(27, 31, 35, 0.05);
+  border-radius: 3px;
+  font-size: 85%;
   margin: 0;
-  padding: 0 16px;
-  border-left: 4px solid #ddd;
 }
 
-span {
-  color: black !important;
+/* Formatting for quotes */
+blockquote {
+  border-left: 0.25em solid #dfe2e5;
+  padding: 0 1em;
+  color: #6a737d;
+  margin-top: 0;
+  margin-bottom: 16px;
 }
 
+/* Reset the text color */
+span,
 code {
   color: black !important;
 }
