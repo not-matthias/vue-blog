@@ -65,7 +65,6 @@ import marked from '@/utils/renderer';
 import github_api, { IFile, IMetaData } from '@/utils/github_api';
 
 import highlight from 'highlight.js';
-import moment from 'moment';
 import fm from 'front-matter';
 
 @Component({

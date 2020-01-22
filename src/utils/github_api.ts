@@ -132,7 +132,7 @@ export default {
       const data = {
         title: content.attributes.title,
         description: content.attributes.description,
-        date: moment(content.attributes.date).format('DD. MMMM YYYY'),
+        date: moment(content.attributes.date, 'YYYY-MM-DD').format('MMMM DD, YYYY'),
         author: content.attributes.author,
         category: content.attributes.category,
         tags: content.attributes.tags
