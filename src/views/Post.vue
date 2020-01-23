@@ -17,7 +17,10 @@
             <v-card class="pa-3" raised>
               <v-card-title primary-title>
                 <div>
-                  <h1 class="font-weight-bold" style="border-bottom: none; padding-bottom: 0">{{ metaData.title }}</h1>
+                  <h1
+                    class="font-weight-bold"
+                    style="border-bottom: none; padding-bottom: 0"
+                  >{{ metaData.title }}</h1>
 
                   <p class="pt-2">
                     <PostData :metaData="metaData" />
@@ -28,7 +31,7 @@
               <v-card-text class="pt-0">
                 <v-divider class="pa-3"></v-divider>
 
-                <article v-html="htmlContent"></article>
+                <article class="post-content" v-html="htmlContent"></article>
               </v-card-text>
             </v-card>
           </v-flex>
@@ -44,7 +47,7 @@
         theme="github-light"
         crossorigin="anonymous"
         async
-      /> -->
+      />-->
     </div>
 
     <Footer />
@@ -117,122 +120,127 @@ export default class Post extends Vue {
 }
 </script>
 
-<style>
-/* @import url('/github-markdown-css/github-markdown.css'); */
-
+<style scoped lang="scss">
 .blog-post {
   font-size: 16px;
   line-height: 1.5;
 }
 
-a {
-  text-decoration: none;
-  font-weight: bold;
+.post-content {
   color: black;
-  transition: all 0.3s;
 }
 
-a:hover {
-  color: #c62828; /* = red darken-3 */
-  cursor: pointer;
-}
+// Styles for the dynamic post content
+::v-deep .post-content {
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    transition: all 0.3s;
+  }
 
-p {
-  margin-bottom: 16px;
-  margin-top: 0;
-}
+  a:hover {
+    color: #c62828; /* = red darken-3 */
+    cursor: pointer;
+  }
 
-h1 {
-  font-size: 2em;
-}
+  p {
+    margin-bottom: 16px;
+    margin-top: 0;
+  }
 
-h2 {
-  font-size: 1.5em;
-}
+  h1 {
+    font-size: 2em;
+  }
 
-h3 {
-  font-size: 1.25em;
-}
+  h2 {
+    font-size: 1.5em;
+  }
 
-h4 {
-  font-size: 1em;
-}
+  h3 {
+    font-size: 1.25em;
+  }
 
-h5 {
-  font-size: 0.875em;
-}
+  h4 {
+    font-size: 1em;
+  }
 
-h6 {
-  color: #6a737d;
-  font-size: 0.85em;
-}
+  h5 {
+    font-size: 0.875em;
+  }
 
-h1,
-h2 {
-  border-bottom: 1px solid #eaecef;
-  padding-bottom: 0.3em;
-}
+  h6 {
+    color: #6a737d;
+    font-size: 0.85em;
+  }
 
-h1,
-h2,
-h3,
-h4 {
-  font-weight: 600;
-  line-height: 1.25;
-  margin-bottom: 16px;
-  margin-top: 24px;
-}
+  h1,
+  h2 {
+    border-bottom: 1px solid #eaecef;
+    padding-bottom: 0.3em;
+  }
 
-/* Formatting for images */
-img {
-  margin-top: 0;
-  margin-bottom: 16px;
-  max-width: 100%;
-  box-sizing: initial;
-  background-color: #fff;
-}
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 600;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    margin-top: 24px;
+  }
 
-/* Formatting for lists */
-li + li {
-  /* Leave space between list items */
-  margin-top: 0.25em;
-}
+  /* Formatting for images */
+  img {
+    margin-top: 0;
+    margin-bottom: 16px;
+    max-width: 100%;
+    box-sizing: initial;
+    background-color: #fff;
+  }
 
-/* Formatting for code blocks */
-pre {
-  margin-top: 1em;
-  margin-bottom: 1rem;
-  background-color: WhiteSmoke;
-  padding: 16px;
-  overflow-x: auto;
-  white-space: pre;
+  /* Formatting for lists */
+  li + li {
+    /* Leave space between list items */
+    margin-top: 0.25em;
+  }
 
-  border-radius: 3px;
-}
+  /* Formatting for code blocks */
+  pre {
+    margin-top: 1em;
+    margin-bottom: 1rem;
+    background-color: WhiteSmoke;
+    padding: 16px;
+    overflow-x: auto;
+    white-space: pre;
 
-/* Formatting for syntax highlighting */
-code {
-  font-weight: normal;
-  box-shadow: none;
+    border-radius: 3px;
+  }
 
-  background-color: rgba(27, 31, 35, 0.05);
-  border-radius: 3px;
-  font-size: 85%;
-  margin: 0;
-}
+  /* Formatting for syntax highlighting */
+  code {
+    font-weight: normal !important;
+    box-shadow: none !important;
 
-/* Formatting for quotes */
-blockquote {
-  border-left: 0.25em solid #dfe2e5;
-  padding: 0 1em;
-  color: #6a737d;
-  margin-top: 0;
-  margin-bottom: 16px;
-}
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 3px;
+    font-size: 85%;
+    margin: 0;
+  }
 
-/* Reset the text color */
-span,
-code {
-  color: black !important;
+  /* Formatting for quotes */
+  blockquote {
+    border-left: 0.25em solid #dfe2e5;
+    padding: 0 1em;
+    color: #6a737d;
+    margin-top: 0;
+    margin-bottom: 16px;
+  }
+
+  /* Reset the text color */
+  span,
+  code {
+    color: black !important;
+  }
 }
 </style>
