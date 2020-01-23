@@ -9,7 +9,7 @@
     <!-- Author -->
     <span
       class="pr-2 link hidden-xs-only"
-      @click="$router.push({ name: 'author', params: { author: metaData.author }})"
+      @click="$router.push({ name: 'author', params: { author: metaData.author } })"
       hidden-sm-and-down
     >
       <v-icon small>edit</v-icon>
@@ -19,7 +19,7 @@
     <!-- Category -->
     <span
       class="pr-2 link hidden-xs-only"
-      @click="$router.push({ name: 'category', params: { category: metaData.category }})"
+      @click="$router.push({ name: 'category', params: { category: metaData.category } })"
     >
       <v-icon small>folder_open</v-icon>
       {{ metaData.category }}

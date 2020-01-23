@@ -1,10 +1,10 @@
 <template>
   <div>
-    <notifications group="postlist"/>
+    <!-- <notifications group="postlist"/> -->
 
     <!-- If -->
     <div class="text-xs-center pa-5" v-if="loading">
-      <v-progress-circular indeterminate/>
+      <v-progress-circular indeterminate />
     </div>
 
     <!-- Else -->
@@ -20,24 +20,23 @@
 
         <!-- Post List -->
         <v-data-iterator
-          content-tag="v-layout"
-          hide-actions
+          hide-default-footer
           row
           wrap
           :items="filteredFiles"
           :search="search"
           :custom-filter="customFilter"
-          :rows-per-page-items="perPage"
-          :pagination.sync="pagination"
+          :items-per-page-options="perPage"
+          :options="pagination"
         >
-          <v-flex xs12 sm10 offset-sm1 xl8 offset-xl2 slot="item" slot-scope="file">
-            <ListItem :hash="file.item.hash" :metaData="file.item.metaData"/>
+          <v-flex xs12 sm10 offset-sm1 xl6 offset-xl3 slot="item" slot-scope="file" class="pa-3">
+            <ListItem :hash="file.item.hash" :metaData="file.item.metaData" />
           </v-flex>
         </v-data-iterator>
       </v-container>
 
       <!-- Pagination -->
-      <div class="text-xs-center">
+      <div class="text-xs-center pb-3">
         <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
       </div>
     </div>
@@ -65,7 +64,7 @@ export default class PostList extends Vue {
   private files: IFile[] = [];
   private filteredFiles: IFile[] = [];
 
-  private perPage: number[] = [5];
+  private perPage: number[] = [5, 10, 100];
   private pagination = {
     descending: false,
     page: 1,
@@ -109,12 +108,12 @@ export default class PostList extends Vue {
       this.filteredFiles = this.files = await github_api.getList();
       this.pagination.totalItems = this.files.length;
     } catch (error) {
-      this.$notify({
-        group: 'postlist',
-        type: 'error',
-        title: 'Error',
-        text: 'Failed to load posts!'
-      });
+      // this.$notify({
+      //   group: 'postlist',
+      //   type: 'error',
+      //   title: 'Error',
+      //   text: 'Failed to load posts!'
+      // });
     }
   }
 
@@ -134,7 +133,6 @@ export default class PostList extends Vue {
   }
 }
 </script>
-
 
 <style scoped>
 .custom-card {

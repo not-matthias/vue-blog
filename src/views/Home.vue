@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header/>
+    <Header />
 
     <v-container>
       <v-jumbotron color="grey darken-3" dark>
@@ -10,10 +10,12 @@
               <h1
                 class="font-weight-thin"
                 :class="{
-                  'display-4 pb-3' : $vuetify.breakpoint.smAndUp, 
-                  'display-3 pb-1': $vuetify.breakpoint.xsOnly,
+                  'display-4 pb-3': $vuetify.breakpoint.smAndUp,
+                  'display-3 pb-1': $vuetify.breakpoint.xsOnly
                 }"
-              >Welcome</h1>
+              >
+                Welcome
+              </h1>
               <h3 class="font-weight-thin headline">I write about different computer science topics.</h3>
             </v-flex>
           </v-layout>
@@ -21,7 +23,7 @@
       </v-jumbotron>
     </v-container>
 
-    <Footer/>
+    <Footer />
   </div>
 </template>
 

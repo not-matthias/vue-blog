@@ -1,12 +1,12 @@
 <template>
   <div>
-    <Header/>
+    <Header />
 
     <v-container>
       <!-- TODO:  Design here -->
     </v-container>
 
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
@@ -23,4 +23,3 @@ import Footer from '@/components/Footer.vue';
 })
 export default class Author extends Vue {}
 </script>
-

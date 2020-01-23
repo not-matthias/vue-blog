@@ -4,13 +4,12 @@
       <v-card-title primary-title>
         <div>
           <!-- Title -->
-          <h1
-            class="list-item-title"
-            @click="$router.push({ name: 'post', params: { hash }})"
-          >{{ metaData.title }}</h1>
+          <h1 class="list-item-title" @click="$router.push({ name: 'post', params: { hash } })">
+            {{ metaData.title }}
+          </h1>
 
           <!-- PostData -->
-          <PostData class="pt-2" :metaData="metaData"/>
+          <PostData class="pt-2" :metaData="metaData" />
         </div>
       </v-card-title>
 
@@ -24,12 +23,7 @@
         <!-- Read more -->
         <v-layout align-center justify-end>
           <v-flex offset-xs10>
-            <v-btn
-              outline
-              color="red darken-3"
-              class="pr-3"
-              :to="{ name: 'post', params: { hash }}"
-            >Read more</v-btn>
+            <v-btn outlined color="red darken-3" class="pr-3" :to="{ name: 'post', params: { hash } }">Read more</v-btn>
           </v-flex>
         </v-layout>
       </v-card-text>

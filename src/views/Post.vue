@@ -13,14 +13,11 @@
     <div v-else>
       <v-container class="blog-post">
         <v-layout row wrap>
-          <v-flex xs12 sm10 offset-sm1 xl8 offset-xl2>
+          <v-flex xs12 sm10 offset-sm1 xl6 offset-xl3>
             <v-card class="pa-3" raised>
               <v-card-title primary-title>
                 <div>
-                  <h1
-                    class="font-weight-bold"
-                    style="border-bottom: none; padding-bottom: 0"
-                  >{{ metaData.title }}</h1>
+                  <h1 class="font-weight-bold" style="border-bottom: none; padding-bottom: 0">{{ metaData.title }}</h1>
 
                   <p class="pt-2">
                     <PostData :metaData="metaData" />
@@ -39,15 +36,15 @@
       </v-container>
 
       <!-- Comments -->
-      <component
-        is="script"
+      <!-- <component
+        :is="script"
         src="https://utteranc.es/client.js"
         repo="not-matthias/not-matthias.github.io"
         issue-term="title"
         theme="github-light"
         crossorigin="anonymous"
         async
-      />
+      /> -->
     </div>
 
     <Footer />
@@ -63,9 +60,6 @@ import PostData from '@/components/PostData.vue';
 import config from '@/config';
 import marked from '@/utils/renderer';
 import github_api, { IFile, IMetaData } from '@/utils/github_api';
-
-import highlight from 'highlight.js';
-import fm from 'front-matter';
 
 @Component({
   components: {
@@ -112,12 +106,12 @@ export default class Post extends Vue {
 
       document.title = this.metaData.title;
     } catch (error) {
-      this.$notify({
-        group: 'post',
-        type: 'error',
-        title: 'Error',
-        text: 'Failed to load post!'
-      });
+      // this.$notify({
+      //   group: 'post',
+      //   type: 'error',
+      //   title: 'Error',
+      //   text: 'Failed to load post!'
+      // });
     }
   }
 }

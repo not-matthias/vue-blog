@@ -1,10 +1,10 @@
 <template>
   <div>
-    <Header/>
+    <Header />
 
-    <PostList :tag="$route.params.tag"/>
+    <PostList :tag="$route.params.tag" />
 
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
@@ -23,4 +23,3 @@ import PostList from '@/components/PostList.vue';
 })
 export default class Category extends Vue {}
 </script>
-

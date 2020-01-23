@@ -75,17 +75,17 @@ export default {
    * @returns Promise<IFile[]>
    */
   async getList(): Promise<IFile[]> {
-      // Get list
-      const response = await axios.get<IListResponse[]>(getListUrl());
+    // Get list
+    const response = await axios.get<IListResponse[]>(getListUrl());
 
-      // Create custom list
-      const promise: Array<Promise<IFile>> = response.data.map(file => this.parseListResponse(file));
+    // Create custom list
+    const promise: Array<Promise<IFile>> = response.data.map(file => this.parseListResponse(file));
 
-      // Resolve all promises
-      const list = await Promise.all(promise);
+    // Resolve all promises
+    const list = await Promise.all(promise);
 
-      // Return it
-      return list;
+    // Return it
+    return list;
   },
 
   /**
