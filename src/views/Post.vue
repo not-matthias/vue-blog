@@ -17,10 +17,7 @@
             <v-card class="pa-3" raised>
               <v-card-title primary-title>
                 <div>
-                  <h1
-                    class="font-weight-bold"
-                    style="border-bottom: none; padding-bottom: 0"
-                  >{{ metaData.title }}</h1>
+                  <h1>{{ metaData.title }}</h1>
 
                   <p class="pt-2">
                     <PostData :metaData="metaData" />
@@ -39,15 +36,7 @@
       </v-container>
 
       <!-- Comments -->
-      <!-- <component
-        :is="script"
-        src="https://utteranc.es/client.js"
-        repo="not-matthias/not-matthias.github.io"
-        issue-term="title"
-        theme="github-light"
-        crossorigin="anonymous"
-        async
-      />-->
+      <div id="commentPlugin" />
     </div>
 
     <Footer />
@@ -97,6 +86,21 @@ export default class Post extends Vue {
     this.loadPost();
 
     this.loading = false;
+  }
+
+  private mounted() {
+    const plugin = document.createElement('script');
+    plugin.setAttribute('src', 'https://utteranc.es/client.js');
+    plugin.setAttribute('repo', 'not-matthias/not-matthias.github.io');
+    plugin.setAttribute('issue-term', 'title');
+    plugin.setAttribute('theme', 'github-light');
+    plugin.setAttribute('crossorigin', 'anonymous');
+    plugin.async = true;
+
+    const element = document.getElementById('commentPlugin');
+    if (element != null) {
+      element.appendChild(plugin);
+    }
   }
 
   /**
