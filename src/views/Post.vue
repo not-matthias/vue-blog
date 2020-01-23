@@ -5,8 +5,12 @@
     <notifications group="post" />
 
     <!-- If -->
-    <div class="text-xs-center pa-5" v-if="loading">
-      <v-progress-circular indeterminate />
+    <div class="pt-5" v-if="loading">
+      <v-container>
+        <v-row justify="center">
+          <v-progress-circular indeterminate />
+        </v-row>
+      </v-container>
     </div>
 
     <!-- Else -->
