@@ -20,7 +20,7 @@
                   class="font-weight-thin"
                   :class="{
                     'display-4 pb-3': $vuetify.breakpoint.smAndUp,
-                    'display-3 pb-1': $vuetify.breakpoint.xsOnly
+                    'display-2 pb-1': $vuetify.breakpoint.xsOnly
                   }"
                 >Welcome</h1>
                 <h3
