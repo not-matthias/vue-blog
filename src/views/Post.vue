@@ -15,7 +15,7 @@
 
     <!-- Else -->
     <div v-else>
-      <v-container class="blog-post">
+      <v-container>
         <v-layout row wrap>
           <v-flex xs12 sm10 offset-sm1 xl6 offset-xl3>
             <v-card class="pa-3" raised>
@@ -129,11 +129,6 @@ export default class Post extends Vue {
 </script>
 
 <style scoped lang="scss">
-.blog-post {
-  font-size: 16px;
-  line-height: 1.5;
-}
-
 .post-content {
   color: black;
 }

@@ -1,14 +1,14 @@
 <template>
   <div>
     <!-- Calendar -->
-    <span class="pr-2">
+    <span class="post-data pr-2">
       <v-icon small>calendar_today</v-icon>
       {{ metaData.date }}
     </span>
 
     <!-- Author -->
     <span
-      class="pr-2 link hidden-xs-only"
+      class="post-data pr-2 link hidden-xs-only"
       @click="$router.push({ name: 'author', params: { author: metaData.author } })"
       hidden-sm-and-down
     >
@@ -18,7 +18,7 @@
 
     <!-- Category -->
     <span
-      class="pr-2 link hidden-xs-only"
+      class="post-data pr-2 link hidden-xs-only"
       @click="$router.push({ name: 'category', params: { category: metaData.category } })"
     >
       <v-icon small>folder_open</v-icon>
@@ -52,5 +52,11 @@ export default class PostData extends Vue {
 <style scoped>
 .link:hover {
   cursor: pointer;
+}
+
+.post-data {
+  font-weight: normal;
+  font-size: 0.65em;
+  vertical-align: middle;
 }
 </style>
