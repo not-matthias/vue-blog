@@ -92,6 +92,9 @@ export default class Post extends Vue {
     this.loading = false;
   }
 
+  /**
+   * Load the utterance plugin.
+   */
   private mounted() {
     const plugin = document.createElement('script');
     plugin.setAttribute('src', 'https://utteranc.es/client.js');

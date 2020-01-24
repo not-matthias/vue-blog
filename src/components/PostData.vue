@@ -8,7 +8,7 @@
 
     <!-- Author -->
     <span
-      class="post-data pr-2 link hidden-xs-only"
+      class="post-data selectable pr-2 link hidden-xs-only"
       @click="$router.push({ name: 'author', params: { author: metaData.author } })"
       hidden-sm-and-down
     >
@@ -18,7 +18,7 @@
 
     <!-- Category -->
     <span
-      class="post-data pr-2 link hidden-xs-only"
+      class="post-data selectable pr-2 link hidden-xs-only"
       @click="$router.push({ name: 'category', params: { category: metaData.category } })"
     >
       <v-icon small>folder_open</v-icon>
@@ -55,7 +55,7 @@ export default class PostData extends Vue {
 }
 
 .post-data {
-  font-weight: normal;
+  /* font-weight: normal; */
   font-size: 0.65em;
   vertical-align: middle;
 }

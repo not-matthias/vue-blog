@@ -4,9 +4,9 @@
       <v-card-title primary-title>
         <div>
           <!-- Title -->
-          <h1 class="list-item-title" @click="$router.push({ name: 'post', params: { hash } })">
+          <h2 class="selectable" @click="$router.push({ name: 'post', params: { hash } })">
             {{ metaData.title }}
-          </h1>
+          </h2>
 
           <!-- PostData -->
           <PostData class="pt-2" :metaData="metaData" />
@@ -45,18 +45,5 @@ import { IMetaData } from '@/utils/github_api';
 export default class ListItem extends Vue {
   @Prop() private hash!: string;
   @Prop() private metaData!: IMetaData;
-
-  private isHovering: boolean = false;
 }
 </script>
-
-<style scoped>
-h1 {
-  transition: all 0.3s;
-}
-
-.list-item-title:hover {
-  color: #c62828; /* = red darken-3 */
-  cursor: pointer;
-}
-</style>
