@@ -243,6 +243,17 @@ export default class Post extends Vue {
     margin-bottom: 16px;
   }
 
+  /* Formatting for keyboard shortcuts */
+  kbd {
+    font-weight: normal;
+    color: #444d56;
+    vertical-align: middle;
+    background-color: #fafbfc;
+    border: 1px solid #d1d5da;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 #d1d5da;
+  }
+
   /* Reset the text color */
   span,
   code {
