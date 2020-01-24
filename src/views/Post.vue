@@ -21,7 +21,7 @@
             <v-card class="pa-3" raised>
               <v-card-title primary-title>
                 <div>
-                  <h1>{{ metaData.title }}</h1>
+                  <h2 style="word-break: break-word">{{ metaData.title }}</h2>
 
                   <p class="pt-2">
                     <PostData :metaData="metaData" />
@@ -132,12 +132,10 @@ export default class Post extends Vue {
 </script>
 
 <style scoped lang="scss">
-.post-content {
-  color: black;
-}
-
 // Styles for the dynamic post content
 ::v-deep .post-content {
+  color: black;
+
   a {
     text-decoration: none;
     font-weight: bold;
@@ -227,6 +225,7 @@ export default class Post extends Vue {
   code {
     font-weight: normal !important;
     box-shadow: none !important;
+    display: initial !important;
 
     background-color: rgba(27, 31, 35, 0.05);
     border-radius: 3px;
