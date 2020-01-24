@@ -1,13 +1,13 @@
 <template>
   <div>
-    <Header/>
+    <Header />
 
-    <v-container text-xs-center>
-      <h1 class="display-4 mt-5">404</h1>
+    <div align-center align="center">
+      <h1 class="display-4 mt-5 pt-5">404</h1>
       <h2 class="display-1">Page not found.</h2>
-    </v-container>
+    </div>
 
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
@@ -24,4 +24,3 @@ import Footer from '@/components/Footer.vue';
 })
 export default class Category extends Vue {}
 </script>
-

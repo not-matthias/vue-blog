@@ -1,16 +1,16 @@
 <template>
   <div>
-    <Header/>
+    <Header />
 
     <v-container>
       <v-flex xs12 sm10 offset-sm1 xl8 offset-xl2>
         <v-text-field v-model="search" label="Search"></v-text-field>
       </v-flex>
 
-      <PostList :search="search"/>
+      <PostList :search="search" />
     </v-container>
 
-    <Footer/>
+    <Footer />
   </div>
 </template>
 

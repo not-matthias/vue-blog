@@ -7,8 +7,8 @@
 
       <!-- Buttons -->
       <v-toolbar-items>
-        <v-btn flat @click="$router.push({ name: 'posts' })">Posts</v-btn>
-        <v-btn flat @click="$router.push({ name: 'search' })">Search</v-btn>
+        <v-btn text @click="$router.push({ name: 'posts' })">Posts</v-btn>
+        <v-btn text @click="$router.push({ name: 'search' })">Search</v-btn>
       </v-toolbar-items>
     </v-toolbar>
   </div>

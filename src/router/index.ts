@@ -1,7 +1,7 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import VueRouter from 'vue-router';
 
-Vue.use(Router);
+Vue.use(VueRouter);
 
 const routes = [
   {
@@ -46,8 +46,10 @@ const routes = [
   }
 ];
 
-export default new Router({
+const router = new VueRouter({
   mode: 'hash',
-  base: '/',
+  base: process.env.BASE_URL,
   routes
 });
+
+export default router;

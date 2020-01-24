@@ -1,10 +1,10 @@
 <template>
   <div>
-    <Header/>
+    <Header />
 
-    <PostList/>
+    <PostList />
 
-    <Footer/>
+    <Footer />
   </div>
 </template>
 
